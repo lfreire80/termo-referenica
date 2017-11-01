@@ -1,60 +1,72 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div class="container text-center wrapper">
+    <div>
+      <app-header></app-header>
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="content-box">
+          <div class="content-box-header">
+            <h1>Listagem dos Termos de Referência</h1>
+          </div>
+          <div class="content-box-inner">
+            <app-termo-referencia-list></app-termo-referencia-list>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+
+import Header from './Header.vue'
+import TermoReferenciaList from './components/TermoReferenciaList.vue'
 export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  components:{
+    appHeader: Header,
+    appTermoReferenciaList: TermoReferenciaList
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.wrapper {
+  max-width: 830px;
 }
 
-h1, h2 {
-  font-weight: normal;
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 11px;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.content{
+  background-color: #9cc;
+  padding: 10px;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+.content-box{
+  background-color: #97baba;
+  box-shadow: 2px 2px 10px 2px #888;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 10px;
+  width: 100%;
+  
 }
 
-a {
-  color: #42b983;
+.content-box-header h1{
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+} 
+
+.content-box-inner{
+  background-color: white;
+  text-align: left;
+  padding: 5px;  
+  font-size: 12px;
+  
 }
 </style>
