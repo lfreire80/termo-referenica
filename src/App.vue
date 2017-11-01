@@ -1,33 +1,19 @@
 <template>
   <div class="container text-center wrapper">
-    <div>
-      <app-header></app-header>
-    </div>
-    <div class="content">
-      <div class="row">
-        <div class="content-box">
-          <div class="content-box-header">
-            <h1>Listagem dos Termos de Referência</h1>
-          </div>
-          <div class="content-box-inner">
-            <app-termo-referencia-list></app-termo-referencia-list>
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-header></app-header>
+    <app-home></app-home>
   </div>
 </template>
 
 <script>
-
-import Header from './Header.vue'
-import TermoReferenciaList from './components/TermoReferenciaList.vue'
-export default {
-  components:{
-    appHeader: Header,
-    appTermoReferenciaList: TermoReferenciaList
+  import Header from './Header.vue'
+  import Home from './components/Home.vue'
+  export default {
+      components:{
+          appHeader: Header,
+          appHome: Home
+      }
   }
-}
 </script>
 
 <style>

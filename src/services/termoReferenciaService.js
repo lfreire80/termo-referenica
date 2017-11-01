@@ -14,7 +14,19 @@ const GetByIdAsync = async (id) => {
     return response.data
 }
 
+const SaveAsync = async (termo) => {
+    let response = this.data = await axios.post(url, termo)
+    return response.data
+}
+
+const UpdateAsync = async (termo) => {
+    let response = this.data = await axios.put(url + `/${termo.numero}`)
+    return response.data
+}
+
 export default{
     GetAsync,
-    GetByIdAsync
+    GetByIdAsync,
+    SaveAsync,
+    UpdateAsync
 }

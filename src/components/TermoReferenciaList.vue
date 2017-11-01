@@ -23,18 +23,11 @@
     </table>
   
 </template>
-<script>
-    import termoReferenciaService from '../services/termoReferenciaService'
 
+<script>
     export default{
-        data(){
-            return{
-                termos:[]
-            }
-        },
-        async mounted(){
-            this.termos = (await termoReferenciaService.GetAsync()).data
-        },
+        props: ['termos'],
+       
         methods: {
             editarTermo(id){
                 alert(id)
