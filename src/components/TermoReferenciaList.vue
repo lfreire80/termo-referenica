@@ -17,7 +17,7 @@
             <td :class="{ grid_color : key % 2 != 0}">{{termo.instituicaoFinanceira}}</td>
             <td :class="{ grid_color : key % 2 != 0}">{{termo.processo}}</td>
             <td :class="{ grid_color : key % 2 != 0}">{{termo.data}}</td>
-            <td :class="{ grid_color : key % 2 != 0}">{{termo.tipo}}</td>
+            <td :class="{ grid_color : key % 2 != 0}">{{Tipos[termo.tipo]}}</td>
         </tr>
         </tbody>
     </table>
@@ -25,9 +25,14 @@
 </template>
 
 <script>
+    import { Tipos } from '../models/Tipos'
     export default{
         props: ['termos'],
-       
+        data(){
+            return{
+              Tipos: Tipos
+            }
+        },     
         methods: {
             editarTermo(id){
                 alert(id)
