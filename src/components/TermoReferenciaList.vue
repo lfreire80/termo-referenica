@@ -8,16 +8,18 @@
             <th>Processo</th>
             <th>Data</th>
             <th>Tipo</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="(termo,key) in termos" :key="termo.numero" @click="editarTermo(termo.numero)">
-            <td :class="{ grid_color : key % 2 != 0}">{{termo.numero}}</td>
-            <td :class="{ grid_color : key % 2 != 0}">{{termo.projeto}}</td>
-            <td :class="{ grid_color : key % 2 != 0}">{{termo.instituicaoFinanceira}}</td>
-            <td :class="{ grid_color : key % 2 != 0}">{{termo.processo}}</td>
-            <td :class="{ grid_color : key % 2 != 0}">{{termo.data}}</td>
-            <td :class="{ grid_color : key % 2 != 0}">{{Tipos[termo.tipo]}}</td>
+            <td :class="{ grid_color : key % 2 != 0}">{{ termo.numero }}</td>
+            <td :class="{ grid_color : key % 2 != 0}">{{ termo.projeto }}</td>
+            <td :class="{ grid_color : key % 2 != 0}">{{ termo.instituicaoFinanceira }}</td>
+            <td :class="{ grid_color : key % 2 != 0}">{{ termo.processo }}</td>
+            <td :class="{ grid_color : key % 2 != 0}">{{ new Date(termo.data).toLocaleDateString() }}</td>
+            <td :class="{ grid_color : key % 2 != 0}">{{ Tipos[termo.tipo] }}</td>
+            <td :class="{ grid_color : key % 2 != 0}">{{ Status[termo.status] }}</td>
         </tr>
         </tbody>
     </table>
@@ -26,11 +28,13 @@
 
 <script>
     import { Tipos } from '../models/Tipos'
+    import { Status } from '../models/Status'
     export default{
         props: ['termos'],
         data(){
             return{
-              Tipos: Tipos
+              Tipos: Tipos,
+              Status: Status
             }
         },     
         methods: {
