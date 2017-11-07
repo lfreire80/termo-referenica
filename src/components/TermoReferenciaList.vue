@@ -1,4 +1,5 @@
 <template>
+   <div>
    <table v-if="termos.length > 0">
         <thead>
         <tr>
@@ -23,7 +24,8 @@
         </tr>
         </tbody>
     </table>
-  
+    
+   </div>
 </template>
 
 <script>
