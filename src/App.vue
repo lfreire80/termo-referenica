@@ -2,6 +2,7 @@
   <div class="container text-center wrapper">
     <app-header></app-header>
     <app-home></app-home>
+  
   </div>
 </template>
 

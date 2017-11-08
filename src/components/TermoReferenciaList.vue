@@ -1,6 +1,10 @@
 <template>
    <div>
-   <table v-if="termos.length > 0">
+    <div class="content-box-header">
+        <h1>Listagem dos Termos de Referência</h1>
+    </div>
+    <div class="content-box-inner">
+    <table v-if="termos.length > 0">
         <thead>
         <tr>
             <th>Numero</th>
@@ -24,26 +28,32 @@
         </tr>
         </tbody>
     </table>
-    
+    </div>
    </div>
 </template>
 
 <script>
     import { Tipos } from '../models/Tipos'
     import { Status } from '../models/Status'
+    import termoReferenciaService from '../services/termoReferenciaService'
     export default{
-        props: ['termos'],
+        
         data(){
             return{
               Tipos: Tipos,
-              Status: Status
+              Status: Status,
+              termos:[]
             }
-        },     
+        }, 
+        async created(){
+            this.termos = (await termoReferenciaService.GetAsync()).data
+        },    
         methods: {
             editarTermo(id){
-                alert(id)
+                this.$router.push(`/termo/${id}`)
             }
         }
+        
     }
 </script>
 

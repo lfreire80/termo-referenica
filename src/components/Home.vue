@@ -2,30 +2,43 @@
   <div class="content">
       <div class="row">
         <div class="content-box">
-          <div class="content-box-header">
-            <h1>Listagem dos Termos de Referência</h1>
-          </div>
-          <div class="content-box-inner">
-            <app-termo-referencia-list :termos="termos"></app-termo-referencia-list>
-          </div>
-        </div>
+           <router-view></router-view>
+       </div>
       </div>
     </div>
 </template>
 <script>
+
     import TermoReferenciaList from './TermoReferenciaList.vue'
-    import termoReferenciaService from '../services/termoReferenciaService'
+    import TermoReferenciaPessoaFisica from './TermoReferenciaPessoaFisica.vue'
+    import TermoReferenciaPessoaJuridica from './TermoReferenciaPessoaJuridica.vue'
+    import TermoReferenciaBolsa from './TermoReferenciaBolsa.vue'
+    import TermoReferenciaImportacao from './TermoReferenciaImportacao.vue'
+    
+
     export default {
         components:{
-            appTermoReferenciaList: TermoReferenciaList
+            appTermoReferenciaList: TermoReferenciaList,
+            appTermoReferenciaPessoaFisica : TermoReferenciaPessoaFisica,
+            appTermoReferenciaPessoaJuridica : TermoReferenciaPessoaJuridica,
+            appTermoReferenciaBolsa : TermoReferenciaBolsa,
+            appTermoReferenciaImportacao : TermoReferenciaImportacao
         },
         data(){
             return{
-                termos:[]
+                termo:''
             }
-        },
-        async created(){
-            this.termos = (await termoReferenciaService.GetAsync()).data
-        },
+        }
+      
     }
 </script>
+
+<style scoped>
+    .my-btn{
+        font-size: 12px; 
+    }
+
+    .my-close{
+        font-size: 20px;
+    }
+</style>

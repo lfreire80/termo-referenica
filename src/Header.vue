@@ -6,7 +6,7 @@
         <div class='menu'>
             <ul class="nav">
 	            <li class="top">
-	                <a href="MenuPrincipal.aspx" class="top_link"><span>Início</span></a>
+	                <router-link to="/" class="top_link"><span>Início</span></router-link>
 	            </li>
 	            <li class="top_right">
                     <a href="#"><span>Sair</span></a>
