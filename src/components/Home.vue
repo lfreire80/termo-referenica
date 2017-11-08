@@ -10,19 +10,11 @@
 <script>
 
     import TermoReferenciaList from './TermoReferenciaList.vue'
-    import TermoReferenciaPessoaFisica from './TermoReferenciaPessoaFisica.vue'
-    import TermoReferenciaPessoaJuridica from './TermoReferenciaPessoaJuridica.vue'
-    import TermoReferenciaBolsa from './TermoReferenciaBolsa.vue'
-    import TermoReferenciaImportacao from './TermoReferenciaImportacao.vue'
-    
+   
 
     export default {
         components:{
-            appTermoReferenciaList: TermoReferenciaList,
-            appTermoReferenciaPessoaFisica : TermoReferenciaPessoaFisica,
-            appTermoReferenciaPessoaJuridica : TermoReferenciaPessoaJuridica,
-            appTermoReferenciaBolsa : TermoReferenciaBolsa,
-            appTermoReferenciaImportacao : TermoReferenciaImportacao
+            appTermoReferenciaList: TermoReferenciaList
         },
         data(){
             return{

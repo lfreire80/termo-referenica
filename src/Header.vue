@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="header">
         <div>
             <img src="./assets/topo.gif">
         </div>  
@@ -45,5 +45,11 @@ a{
 }
 a:hover{
     font-style: none;
+}
+
+@media print {
+    .header{
+        display: none;
+    }
 }
 </style>
