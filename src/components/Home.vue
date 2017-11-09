@@ -2,7 +2,9 @@
   <div class="content">
       <div class="row">
         <div class="content-box">
-           <router-view></router-view>
+            <transition name="fade">
+                <router-view></router-view>
+            </transition>
        </div>
       </div>
     </div>
@@ -32,5 +34,14 @@
 
     .my-close{
         font-size: 20px;
+    }
+
+
+    .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s ease-out
+    }
+
+    .fade-enter, .fade-leave-active {
+    opacity: 0
     }
 </style>

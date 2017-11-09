@@ -1,45 +1,120 @@
 <template>
    <div>
        <div class="form-group">
-            <label for="objeto">1. OBJETO</label>
-            <textarea-autosize class="form-control" :placeholder="termo.modelo.objeto"></textarea-autosize>
-            <label for="objeto">2. MOTIVAÇÃO / JUSTIFICATIVA</label>
-            <textarea-autosize class="form-control"  :placeholder="termo.modelo.justificativa"></textarea-autosize>
-            <label for="objeto">3. ESPECIFICAÇÕES TÉCNICAS DO PRODUTO/SERVIÇO E INDICAÇÃO DA META E ETAPA </label>
-            <textarea-autosize class="form-control" :placeholder="termo.modelo.especificacao"></textarea-autosize>
-            <label for="objeto">4. PRAZO, LOCAL E CONDIÇÕES DE ENTREGA OU EXECUÇÃO.</label>
-            <textarea-autosize class="form-control" :placeholder="termo.modelo.prazo"></textarea-autosize>
-            <label for="objeto">5. CONDIÇÕES E PRAZOS DE PAGAMENTO</label>
-            <textarea-autosize class="form-control"  :placeholder="termo.modelo.condicoes"></textarea-autosize>
-            <label for="objeto">6. CONDIÇÕES DE GARANTIA</label>
-            <textarea-autosize class="form-control"  :placeholder="termo.modelo.condicoesDeGarantia"></textarea-autosize>
-            <label for="objeto">7. RESPONSÁVEL TÉCNICO PELO RECEBIMENTO E APROVAÇÃO DAS MEDIÇÕES: NOME, TELEFONE E E-MAIL.</label>
-            <textarea-autosize class="form-control" :placeholder="termo.modelo.responsavel"></textarea-autosize>
-            <label for="objeto">8. QUALIFICAÇÃO TÉCNICA</label>
-            <textarea-autosize class="form-control"  :placeholder="termo.modelo.qualificacao"></textarea-autosize>
-            <label for="objeto">9. CRITÉRIOS DE AVALIAÇÃO DAS PROPOSTAS</label>
-            <textarea-autosize class="form-control"></textarea-autosize>
+
+            <app-documento-field
+                 titulo = "1. OBJETO"
+                 :showTooltip = "tooltips.showObjeto"
+                 :tooltipMsg = "termo.modelo.objeto"
+                 v-model = "termo.documento.objeto"
+                 @updated="termo.documento.objeto = $event; $emit('updated',termo)"
+                 >
+            </app-documento-field>
+
+           <app-documento-field
+                 titulo = "2. MOTIVAÇÃO / JUSTIFICATIVA"
+                 :showTooltip = "tooltips.showJustificativa"
+                 :tooltipMsg = "termo.modelo.justificativa"
+                 v-model = "termo.documento.justificativa"
+                 @updated="termo.documento.justificativa = $event; $emit('updated',termo)"
+                 >
+            </app-documento-field>
+
+           <app-documento-field
+                 titulo = "3. ESPECIFICAÇÕES TÉCNICAS DO PRODUTO/SERVIÇO E INDICAÇÃO DA META E ETAPA"
+                 :showTooltip = "tooltips.showEspecificacao"
+                 :tooltipMsg = "termo.modelo.especificacao"
+                 v-model = "termo.documento.especificacao"
+                 @updated="termo.documento.especificacao = $event; $emit('updated',termo)"
+                 >
+            </app-documento-field>
+
+
+           <app-documento-field
+                 titulo = "4. PRAZO, LOCAL E CONDIÇÕES DE ENTREGA OU EXECUÇÃO."
+                 :showTooltip = "tooltips.showPrazo"
+                 :tooltipMsg = "termo.modelo.prazo"
+                 v-model = "termo.documento.prazo"
+                 @updated="termo.documento.prazo = $event; $emit('updated',termo)"
+                 >
+            </app-documento-field>
+
+            <app-documento-field
+                 titulo = "5. CONDIÇÕES E PRAZOS DE PAGAMENTO"
+                 :showTooltip = "tooltips.showCondicoes"
+                 :tooltipMsg = "termo.modelo.condicoes"
+                 v-model = "termo.documento.condicoes"
+                 @updated="termo.documento.condicoes = $event; $emit('updated',termo)"
+                 >
+            </app-documento-field>
+
+            <app-documento-field
+                 titulo = "6. CONDIÇÕES DE GARANTIA"
+                 :showTooltip = "tooltips.showCondicoesDeGarantia"
+                 :tooltipMsg = "termo.modelo.condicoesDeGarantia"
+                 v-model = "termo.documento.condicoesDeGarantia"
+                 @updated="termo.documento.condicoesDeGarantia = $event; $emit('updated',termo)"
+                 >
+            </app-documento-field>
+
+            <app-documento-field
+                 titulo = "7. RESPONSÁVEL TÉCNICO PELO RECEBIMENTO E APROVAÇÃO DAS MEDIÇÕES"
+                 :showTooltip = "tooltips.showResponsavel"
+                 :tooltipMsg = "termo.modelo.responsavel"
+                 v-model = "termo.documento.responsavel"
+                 @updated="termo.documento.responsavel = $event; $emit('updated',termo)"
+                 >
+            </app-documento-field>
+
+            <app-documento-field
+                 titulo = "8. QUALIFICAÇÃO TÉCNICA"
+                 :showTooltip = "tooltips.showQualificacao"
+                 :tooltipMsg = "termo.modelo.qualificacao"
+                 v-model = "termo.documento.qualificacao"
+                 @updated="termo.documento.qualificacao = $event; $emit('updated',termo)"
+                 >
+            </app-documento-field>
+
+            <app-documento-field
+                 titulo = "9. CRITÉRIOS DE AVALIAÇÃO DAS PROPOSTAS"
+                 :showTooltip = "tooltips.showCriterio"
+                 :tooltipMsg = "termo.modelo.criterio"
+                 v-model = "termo.documento.criterio"
+                 @updated="termo.documento.criterio = $event; $emit('updated',termo)"
+                 >
+            </app-documento-field>
+
        </div>
    </div>
 </template>
 <script>
+
+    
+    import DocumentoField from './shared/DocumentoField.vue'
+
     export default{
-        props: ["termo"]
+        props: ["termo"],
+        data() {
+            return {
+                tooltips: {
+                    showObjeto: false,
+                    showJustificativa: false,
+                    showEspecificacao: false,
+                    showPrazo: false,
+                    showCondicoes: false,
+                    showCondicoesDeGarantia: false,
+                    showResponsavel: false,
+                    showQualificacao: false
+                }
+            }
+        },
+        components:{
+            appDocumentoField: DocumentoField
+        }
     }
 </script>
-<style scoped>
-label{
-    background-color: #ccc;
-    display: block;
-    font-weight: bold;
-    padding: 5px;
-}
+<style scoped> 
 
-textarea{
-    width:100%;
-    padding: 5px;
-    margin-bottom: 5px;
-}
 
 @media print{
     textarea{
