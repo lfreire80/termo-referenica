@@ -66,10 +66,12 @@
     },
     async created(){
         this.termo = (await termoReferenciaService.GetByIdAsync(this.id)).data
-        this.termo.revisoes[0].usuario = "Leoanrdo Frere"
+        this.termo.revisoes[0].usuario = "Ismael Marques"
         this.termo.revisoes[0].data = "09/11/2017"
-        this.termo.revisoes[0].documento = { objeto: 'leonardo'}
-        this.termo.revisoes[2].documento = { objeto: 'ismael'}
+        this.termo.revisoes[0].documento = { objeto: 'What it does: Traverses the array from left to right invoking a callback function on each element with parameters (below). For each callback the value returned becomes the element in the new array. After all elements have been traversed map() returns the new array with all the translated elements[1].'}
+        this.termo.revisoes[2].usuario = "Leonardo Frere"
+        this.termo.revisoes[2].data = "09/11/2017"
+        this.termo.revisoes[2].documento = { objeto: 'What it does: Like map() it traverses the array from left to right invoking a callback function on each element. The returned value must be a boolean identifying whether the element will be kept or discarded. After all elements have been traversed filter() returns a new array with all elements that returned true[2].'}
     },   
     methods: {
       update(e){
