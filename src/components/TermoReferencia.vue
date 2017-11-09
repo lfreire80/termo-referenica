@@ -44,6 +44,11 @@
         :termo="termo" 
         v-else-if="termo.tipo === 4">
   </app-termo-referencia-pessoa-importacao>
+
+  <div class=text-right >
+    <button type="button" class="btn btn-sm btn-primary">  Salvar  </button>
+    <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
+  </div>
 </div>
 </template>
 <script>
@@ -61,10 +66,14 @@
     },
     async created(){
         this.termo = (await termoReferenciaService.GetByIdAsync(this.id)).data
+        this.termo.revisoes[0].usuario = "Leoanrdo Frere"
+        this.termo.revisoes[0].data = "09/11/2017"
+        this.termo.revisoes[0].documento = { objeto: 'leonardo'}
+        this.termo.revisoes[2].documento = { objeto: 'ismael'}
     },   
     methods: {
       update(e){
-        console.log(e.documento);
+        this.termo.documento = e.documento
       }
     },
     components: {

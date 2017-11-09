@@ -7,6 +7,7 @@
                  :showTooltip = "tooltips.showObjeto"
                  :tooltipMsg = "termo.modelo.objeto"
                  v-model = "termo.documento.objeto"
+                 :comentarios = "getComentarios('objeto')"
                  @updated="termo.documento.objeto = $event; $emit('updated',termo)"
                  >
             </app-documento-field>
@@ -16,6 +17,7 @@
                  :showTooltip = "tooltips.showJustificativa"
                  :tooltipMsg = "termo.modelo.justificativa"
                  v-model = "termo.documento.justificativa"
+                 :comentarios = "getComentarios('justificativa')"
                  @updated="termo.documento.justificativa = $event; $emit('updated',termo)"
                  >
             </app-documento-field>
@@ -25,6 +27,7 @@
                  :showTooltip = "tooltips.showEspecificacao"
                  :tooltipMsg = "termo.modelo.especificacao"
                  v-model = "termo.documento.especificacao"
+                 :comentarios = "getComentarios('especificacao')"
                  @updated="termo.documento.especificacao = $event; $emit('updated',termo)"
                  >
             </app-documento-field>
@@ -35,6 +38,7 @@
                  :showTooltip = "tooltips.showPrazo"
                  :tooltipMsg = "termo.modelo.prazo"
                  v-model = "termo.documento.prazo"
+                 :comentarios = "getComentarios('prazo')"
                  @updated="termo.documento.prazo = $event; $emit('updated',termo)"
                  >
             </app-documento-field>
@@ -44,6 +48,7 @@
                  :showTooltip = "tooltips.showCondicoes"
                  :tooltipMsg = "termo.modelo.condicoes"
                  v-model = "termo.documento.condicoes"
+                 :comentarios = "getComentarios('condicoes')"
                  @updated="termo.documento.condicoes = $event; $emit('updated',termo)"
                  >
             </app-documento-field>
@@ -53,6 +58,7 @@
                  :showTooltip = "tooltips.showCondicoesDeGarantia"
                  :tooltipMsg = "termo.modelo.condicoesDeGarantia"
                  v-model = "termo.documento.condicoesDeGarantia"
+                 :comentarios = "getComentarios('condicoesDeGarantia')"
                  @updated="termo.documento.condicoesDeGarantia = $event; $emit('updated',termo)"
                  >
             </app-documento-field>
@@ -62,6 +68,7 @@
                  :showTooltip = "tooltips.showResponsavel"
                  :tooltipMsg = "termo.modelo.responsavel"
                  v-model = "termo.documento.responsavel"
+                 :comentarios = "getComentarios('responsavel')"
                  @updated="termo.documento.responsavel = $event; $emit('updated',termo)"
                  >
             </app-documento-field>
@@ -71,6 +78,7 @@
                  :showTooltip = "tooltips.showQualificacao"
                  :tooltipMsg = "termo.modelo.qualificacao"
                  v-model = "termo.documento.qualificacao"
+                 :comentarios = "getComentarios('qualificacao')"
                  @updated="termo.documento.qualificacao = $event; $emit('updated',termo)"
                  >
             </app-documento-field>
@@ -80,6 +88,7 @@
                  :showTooltip = "tooltips.showCriterio"
                  :tooltipMsg = "termo.modelo.criterio"
                  v-model = "termo.documento.criterio"
+                 :comentarios = "getComentarios('criterio')"
                  @updated="termo.documento.criterio = $event; $emit('updated',termo)"
                  >
             </app-documento-field>
@@ -108,9 +117,23 @@
                 }
             }
         },
+        methods: {
+            getComentarios(campo){
+                let comentarios = []
+                if(this.termo.revisoes || this.termo.revisoes.length !== 0){
+                    this.termo.revisoes.forEach(item => {
+                        if(item.documento && campo in item.documento) {
+                            comentarios.push({ usuario: item.usuario, data: item.data, comentario: item.documento[campo]})
+                        }
+                    })  
+                }
+                return comentarios
+            }
+        },
         components:{
             appDocumentoField: DocumentoField
         }
+
     }
 </script>
 <style scoped> 
