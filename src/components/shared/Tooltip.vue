@@ -1,9 +1,11 @@
 <template>
-  <transition name="fade">
-    <div class='my-tooltip' v-if="show" v-bind:style="{backgroundColor: bgColor, borderColor: bdColor}">
-         <p><slot></slot></p>
-    </div>
-  </transition>
+    <transition name="fade">
+        <div class='my-tooltip'
+            v-if="show"
+            v-bind:style="{backgroundColor: bgColor, borderColor: bdColor}">
+                <p><slot></slot></p>
+        </div>
+    </transition>
 </template>
 
 <script>

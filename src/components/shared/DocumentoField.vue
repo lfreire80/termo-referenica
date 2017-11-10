@@ -1,14 +1,35 @@
 <template>
   <div>
        <label>
-            <span>{{ titulo}}</span>
-                <span class="right-span">
-                <button type="button" v-if="comentarios.length > 0" @click="showComentarios = !showComentarios" class="btn btn-sm my-btn-revisoes">Comentários {{comentarios.length}}</button>
-                <button type="button" @click="internalShowTooltip = !internalShowTooltip" class="btn btn-sm my-btn">?</button>
+            <span>{{titulo}}</span>
+            <span class="right-span">
+                <button 
+                    type="button"
+                    @click="showComentarios = !showComentarios"
+                    v-if="comentarios.length > 0"
+                    class="btn btn-sm my-btn-revisoes">Comentários {{comentarios.length}}
+                </button>
+                <button 
+                    type="button"
+                    @click="internalShowTooltip = !internalShowTooltip"
+                    class="btn btn-sm my-btn">?
+                </button>             
             </span>     
         </label>
-        <app-tooltip :show="internalShowTooltip"  :bgColor="'#e2edff'" :bdColor="'#4c90ff'">{{ tooltipMsg }}</app-tooltip>
-        <app-tooltip v-for="comentario in comentarios" :key="comentario.key" :show="showComentarios" :bgColor="'#fffcf4'" :bdColor="'#ce9e1c'"><div class="comentario-header">{{ comentario.usuario }} - {{ comentario.data}}</div>:{{comentario.comentario }}</app-tooltip>
+        <app-tooltip 
+            :show="internalShowTooltip"
+            :bgColor="'#e2edff'"
+            :bdColor="'#4c90ff'">{{ tooltipMsg }}
+        </app-tooltip>
+        <app-tooltip 
+            v-for="comentario in comentarios"
+            :key="comentario.key"
+            :show="showComentarios"
+            :bgColor="'#fffcf4'"
+            :bdColor="'#ce9e1c'">
+                <div class="comentario-header">{{ comentario.usuario }} - {{ comentario.data}}</div>
+                <p>{{comentario.comentario }}</p>
+        </app-tooltip>
         <textarea-autosize 
             class="form-control" 
             v-model = "internalValue"
@@ -71,12 +92,14 @@
         margin-top: -2px;
         background-color:#e2edff;
         font-weight: bold;
+        cursor:pointer;
     }
 
     .my-btn-revisoes{
         margin-top: -2px;
         background-color: #fffcf4;
         font-weight: bold;
+        cursor:pointer;
     }
 
     .comentario-header{
