@@ -1,6 +1,6 @@
 <template>
   <div>
-       <label>
+       <div class="label">
             <span>{{titulo}}</span>
             <span class="right-span">
                 <button 
@@ -15,7 +15,7 @@
                     class="btn btn-sm my-btn">?
                 </button>             
             </span>     
-        </label>
+        </div>
         <app-tooltip 
             :show="internalShowTooltip"
             :bgColor="'#e2edff'"
@@ -69,12 +69,13 @@
 </script>
 
 <style scoped>
-    label{
+    .label{
         background-color: #ccc;
         display: block;
         font-weight: bold;
         padding: 5px;
         height: 30px;
+        margin-bottom: 3px;
     }
     .right-span{
         float:right;
