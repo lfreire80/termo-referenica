@@ -26,9 +26,9 @@
 }
 
 .fade-enter, .fade-leave-to{
-  height: 0;
-  padding: 0 10px;
-  opacity: 0;
+    height: 0;
+    padding: 0 10px;
+    opacity: 0;
 }
 
 </style>
