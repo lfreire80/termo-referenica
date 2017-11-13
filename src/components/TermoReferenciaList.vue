@@ -50,7 +50,7 @@
         },    
         methods: {
             editarTermo(id){
-                this.$router.push(`/termo/${id}`)
+                this.$router.push(`/termo/edit/${id}`)
             }
         }
         
