@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://192.168.1.31/FujbPortal.API/api/termoreferencia'
+const url = 'http://localhost/FujbPortal.API/api/termoreferencia'
 
 const GetAsync = async () => {
     let response = await axios.get(url)
@@ -14,17 +14,19 @@ const GetByIdAsync = async (id) => {
 
 const GetEmpty = async(id) => {
     let response = await axios.get(url + `/empty/${id}`)
-    return response.data.data
+    return response.data
 }
 
 
 const SaveAsync = async (termo) => {
     let response = await axios.post(url, termo)
+    console.log('insert')
     return response.data
 }
 
 const UpdateAsync = async (termo) => {
-    let response = await axios.put(url + `/${termo.numero}`)
+    let response = await axios.put(url + `/${termo.numero}`, termo)
+    console.log('update')
     return response.data
 }
 

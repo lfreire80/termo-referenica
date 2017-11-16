@@ -61,8 +61,11 @@
         },
         methods:{
             updated(e){
-                this.$emit('updated', this.v)
+                console.log('emit')
+                this.$emit('updated', e.target.value)
+                
             }
+
         }
       
         

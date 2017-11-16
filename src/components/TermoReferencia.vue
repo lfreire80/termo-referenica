@@ -6,8 +6,8 @@
         <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">TIPO:</label>
             <div class="col-5">
-                <select id="tipo" class="form-control"  v-model="selectedTipo">
-                    <option v-for="(tipo, index) in tipos" :value="index" :key="index" :selected="selectedTipo == index">{{tipo}}</option>
+                <select id="tipo" class="form-control"  v-model="termo.tipo" @change="changeTipo($event)">
+                    <option v-for="(tipo, index) in tipos" :value="index" :key="index" :selected="termo.tipo == index">{{tipo}}</option>
                 </select>
             </div>
         </div>
@@ -20,29 +20,26 @@
         <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">PROJETO:</label>
             <div class="col-5">
-                <input class="form-control" type="text" id="projeto" v-model="termo.projeto" readonly>
+                <input class="form-control" type="text" id="projeto" v-model="termo.projeto" >
             </div>
         </div>
         <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">INSTITUIÇÃO FINANCEIRA:</label>
             <div class="col-5">
-                <input class="form-control" type="text" id="instituicaofinanceira" v-model="termo.instituicaofinanceira" readonly>
+                <input class="form-control" type="text" id="instituicaoFinanceira" v-model="termo.instituicaoFinanceira" >
             </div>
         </div>
        
         <app-termo-referencia-pessoa-fisica
-                @updated="update($event)"
                 :termo="termo"
                 v-if="termo.tipo === 1">
         </app-termo-referencia-pessoa-fisica>
 
         <app-termo-referencia-pessoa-juridica
-                @updated="update($event)"
                 :termo="termo" v-else-if="termo.tipo === 2">
         </app-termo-referencia-pessoa-juridica>
 
         <app-termo-referencia-bolsa
-                @updated="update($event)"
                 :termo="termo"
                 v-else-if="termo.tipo === 3">
         </app-termo-referencia-bolsa>
@@ -70,36 +67,56 @@
     export default{
         data() {
             return {
-                termo: {},
                 id: this.$route.params.id,
                 action: this.$route.params.action,
                 tipos: Tipos,
-                selectedTipo: 0
+                selectedTipo: 1 //default
+            }
+        },
+        computed: {
+            termo: {
+                get() {
+                    return this.$store.getters.termo
+                },
+                set(value){
+                    this.$store.dispatch('updateTermo', value)
+                }
             }
         },
         async created(){
             switch(this.action){
                 case 'new':
-                    this.termo.documento = {}
-                    this.termo.revisoes = []
+                    this.termo = (await termoReferenciaService.GetEmpty(this.selectedTipo)).data
+                    // this.termo.revisoes = [
+                    //     {codigoRevisao:1, revisor: 'Leonardo Freire', documento: { objeto: "teste revisao1"}},
+                    //     {codigoRevisao:1, revisor: "lEO", data: '11/12/2017', documento: { objeto: "teste revisao1", prazo: "teste revisao 1 prazo"}}
+                    // ]
                 break;
                 case 'edit':
                     this.termo = (await termoReferenciaService.GetByIdAsync(this.id)).data
                 break;
             }
         },
-        watch: {
-            selectedTipo: async function(){
-                this.termo = (await termoReferenciaService.GetEmpty(this.selectedTipo));
-            }
-        },
         methods: {
-            update(e){
-                this.termo.documento = e.documento
-            },
             async save(){
-                const response = await termoReferenciaService.SaveAsync(this.termo);
-                console.log(response)
+                let res=''
+                if(!this.termo.numero){
+                    res = await termoReferenciaService.SaveAsync(this.termo);
+                } else {
+                    res = await termoReferenciaService.UpdateAsync(this.termo);
+                }
+                if(res.status === 200){
+                    console.log('gravado com sucesso')
+                    this.$router.push('/')
+                } else {
+                    console.log('erro ao gravar')
+                }
+
+                
+            },
+            changeTipo(e){
+                this.selectedTipo = e.target.value
+                console.log(e.target.value)
             }
         },
         components: {
