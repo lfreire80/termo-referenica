@@ -12,6 +12,12 @@ const GetByIdAsync = async (id) => {
     return response.data
 }
 
+const GetEmpty = async(id) => {
+    let response = await axios.get(url + `/empty/${id}`)
+    return response.data.data
+}
+
+
 const SaveAsync = async (termo) => {
     let response = await axios.post(url, termo)
     return response.data
@@ -25,6 +31,7 @@ const UpdateAsync = async (termo) => {
 export default{
     GetAsync,
     GetByIdAsync,
+    GetEmpty,
     SaveAsync,
     UpdateAsync
 }

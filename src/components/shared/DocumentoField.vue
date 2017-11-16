@@ -12,7 +12,7 @@
                 <button 
                     type="button"
                     @click="internalShowTooltip = !internalShowTooltip"
-                    v-if="value"
+                    v-if="tooltipMsg"
                     class="btn btn-sm my-btn">?
                 </button>             
             </span>     

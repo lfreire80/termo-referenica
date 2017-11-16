@@ -6,8 +6,8 @@
         <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">TIPO:</label>
             <div class="col-5">
-                <select id="tipo" class="form-control"  v-model="termo.tipo">
-                    <option v-for="(tipo, index) in tipos" :value="index" :key="index" :selected="termo.tipo == index">{{tipo}}</option>
+                <select id="tipo" class="form-control"  v-model="selectedTipo">
+                    <option v-for="(tipo, index) in tipos" :value="index" :key="index" :selected="selectedTipo == index">{{tipo}}</option>
                 </select>
             </div>
         </div>
@@ -72,36 +72,33 @@
                 termo: {},
                 id: this.$route.params.id,
                 action: this.$route.params.action,
-                tipos: Tipos
+                tipos: Tipos,
+                selectedTipo: 0
             }
         },
         async created(){
             switch(this.action){
                 case 'new':
                     this.termo.documento = {}
-                    this.termo.modelo = {}
                     this.termo.revisoes = []
                 break;
                 case 'edit':
                     this.termo = (await termoReferenciaService.GetByIdAsync(this.id)).data
                 break;
-                
             }
-            
-            // this.termo.revisoes[0].usuario = "Ismael Marques"
-            // this.termo.revisoes[0].data = "09/11/2017"
-            // this.termo.revisoes[0].documento = { objeto: 'What it does: Traverses the array from left to right invoking a callback function on each element with parameters (below). For each callback the value returned becomes the element in the new array. After all elements have been traversed map() returns the new array with all the translated elements[1].'}
-            // this.termo.revisoes[2].usuario = "Leonardo Frere"
-            // this.termo.revisoes[2].data = "09/11/2017"
-            // this.termo.revisoes[2].documento = { objeto: 'What it does: Like map() it traverses the array from left to right invoking a callback function on each element. The returned value must be a boolean identifying whether the element will be kept or discarded. After all elements have been traversed filter() returns a new array with all elements that returned true[2].'}
-            // this.termo.revisoes[3].usuario = "Leonardo Frere"
-            // this.termo.revisoes[3].data = "09/11/2017"
-            // this.termo.revisoes[3].documento = { justificativa: 'What it does: Like map() it traverses the array from left to right invoking a callback function on each element. The returned value must be a boolean identifying whether the element will be kept or discarded. After all elements have been traversed filter() returns a new array with all elements that returned true[2].'}
+        },
+        watch: {
+            selectedTipo: async function(){
+                this.termo = (await termoReferenciaService.GetEmpty(this.selectedTipo));
+            }
         },
         methods: {
             update(e){
                 this.termo.documento = e.documento
-            }           
+            },
+            async change(){
+                
+            }
         },
         components: {
             appTermoReferenciaPessoaFisica : TermoReferenciaPessoaFisica,
