@@ -11,24 +11,25 @@
                 </select>
             </div>
         </div>
-        <div class="form-group row">
-            <label for="projeto" class="col-3 col-form-label">PROJETO:</label>
-            <div class="col-5">
-                <input class="form-control" type="text" id="projeto" v-model="termo.projeto">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="projeto" class="col-3 col-form-label">INSTITUIÇÃO FINANCEIRA:</label>
-            <div class="col-5">
-                <input class="form-control" type="text" id="instituicaofinanceira" v-model="termo.instituicaofinanceira">
-            </div>
-        </div>
-        <div class="form-group row">
+         <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">PROCESSO FUJB:</label>
             <div class="col-5">
                 <input class="form-control" type="text" id="processo" v-model="termo.processo">
             </div>
         </div>
+        <div class="form-group row">
+            <label for="projeto" class="col-3 col-form-label">PROJETO:</label>
+            <div class="col-5">
+                <input class="form-control" type="text" id="projeto" v-model="termo.projeto" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="projeto" class="col-3 col-form-label">INSTITUIÇÃO FINANCEIRA:</label>
+            <div class="col-5">
+                <input class="form-control" type="text" id="instituicaofinanceira" v-model="termo.instituicaofinanceira" readonly>
+            </div>
+        </div>
+       
         <app-termo-referencia-pessoa-fisica
                 @updated="update($event)"
                 :termo="termo"
@@ -53,7 +54,7 @@
         </app-termo-referencia-importacao>
 
         <div class=text-right >
-            <button type="button" class="btn btn-sm btn-primary">  Salvar  </button>
+            <button type="button" class="btn btn-sm btn-primary" @click="save()">Salvar</button>
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
     </div>
@@ -96,8 +97,9 @@
             update(e){
                 this.termo.documento = e.documento
             },
-            async change(){
-                
+            async save(){
+                const response = await termoReferenciaService.SaveAsync(this.termo);
+                console.log(response)
             }
         },
         components: {
