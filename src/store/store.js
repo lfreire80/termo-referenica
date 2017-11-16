@@ -20,6 +20,7 @@ export const store = new Vuex.Store({
     mutations: {
         updateTermo: (state, payload) =>{
             console.log('mutation', payload)
+            console.log(payload.modelo)
             state.termo = payload
         }
     },

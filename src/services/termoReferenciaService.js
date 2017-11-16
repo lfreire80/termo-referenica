@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://localhost/FujbPortal.API/api/termoreferencia'
+const url = 'http://192.168.1.31/FujbPortal.API/api/termoreferencia'
 
 const GetAsync = async () => {
     let response = await axios.get(url)

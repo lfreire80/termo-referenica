@@ -114,9 +114,10 @@
 
                 
             },
-            changeTipo(e){
+            async changeTipo(e){
                 this.selectedTipo = e.target.value
-                console.log(e.target.value)
+                this.termo = (await termoReferenciaService.GetEmpty(this.selectedTipo)).data
+                
             }
         },
         components: {
