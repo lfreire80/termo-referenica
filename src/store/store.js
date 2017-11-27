@@ -18,15 +18,15 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        updateTermo: (state, payload) =>{
-            console.log('mutation', payload)
-            console.log(payload.modelo)
+        'UPDATE_TERMO': (state, payload) =>{
+            console.log("motation called")
             state.termo = payload
         }
     },
     actions: {
         updateTermo({commit}, payload){
-            commit('updateTermo', payload)
+            console.log("actions called")
+            commit('UPDATE_TERMO', payload)
         }
     }
 })

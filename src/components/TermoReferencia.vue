@@ -93,9 +93,14 @@
                     // ]
                 break;
                 case 'edit':
+                    console.log("EDIT EDIT EDIT EDIT EDIT EDIT EDIT ", this.id)
                     this.termo = (await termoReferenciaService.GetByIdAsync(this.id)).data
+                    console.log(this.termo.documento.objeto)
                 break;
             }
+        },
+        destroyed(){
+            this.termo = {};
         },
         methods: {
             async save(){

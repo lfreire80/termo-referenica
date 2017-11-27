@@ -20,13 +20,11 @@ const GetEmpty = async(id) => {
 
 const SaveAsync = async (termo) => {
     let response = await axios.post(url, termo)
-    console.log('insert')
     return response.data
 }
 
 const UpdateAsync = async (termo) => {
     let response = await axios.put(url + `/${termo.numero}`, termo)
-    console.log('update')
     return response.data
 }
 
