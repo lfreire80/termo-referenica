@@ -6,7 +6,11 @@
         <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">TIPO:</label>
             <div class="col-5">
-                <select id="tipo" class="form-control"  v-model="termo.tipo" @change="changeTipo($event)">
+                <select id="tipo"
+                     class="form-control"  
+                     v-model="termo.tipo"
+                     @change="changeTipo($event)"
+                     :disabled="action != 'edit' ? disabled : ''">
                     <option v-for="(tipo, index) in tipos" :value="index" :key="index" :selected="termo.tipo == index">{{tipo}}</option>
                 </select>
             </div>
@@ -58,6 +62,7 @@
 </template>
 
 <script>
+
     import TermoReferenciaPessoaFisica from './TermoReferenciaPessoaFisica.vue'
     import TermoReferenciaPessoaJuridica from './TermoReferenciaPessoaJuridica.vue'
     import TermoReferenciaBolsa from './TermoReferenciaBolsa.vue'
@@ -98,10 +103,11 @@
             async save(){
                 const res = await this.saveTermo();
                 if(res.status === 200){
-                    console.log('gravado com sucesso')
+                    alert('Gravado com Sucesso')
                     this.$router.push('/')
                 } else {
                     console.log('erro ao gravar')
+                    alert('Erro ao gravar!')
                 }
 
                 
