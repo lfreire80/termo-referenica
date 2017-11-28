@@ -100,6 +100,7 @@
 
     
     import DocumentoField from './shared/DocumentoField.vue'
+    import {mapState} from 'vuex'
 
     export default{
         data() {
@@ -117,14 +118,9 @@
             }
         },
         computed: {
-            termo: {
-                get() {
-                    return this.$store.getters.termo
-                },
-                set(value){
-                    this.$store.dispatch('updateTermo', value)
-                }
-            }
+            ...mapState([
+                'termo'
+            ])
         },
         methods: {
             getComentarios(campo){

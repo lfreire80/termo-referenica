@@ -9,23 +9,6 @@
       </div>
     </div>
 </template>
-<script>
-
-    import TermoReferenciaList from './TermoReferenciaList.vue'
-   
-
-    export default {
-        components:{
-            appTermoReferenciaList: TermoReferenciaList
-        },
-        data(){
-            return{
-                termo:''
-            }
-        }
-      
-    }
-</script>
 
 <style scoped>
     .my-btn{

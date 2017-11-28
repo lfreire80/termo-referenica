@@ -62,8 +62,9 @@
     import TermoReferenciaPessoaJuridica from './TermoReferenciaPessoaJuridica.vue'
     import TermoReferenciaBolsa from './TermoReferenciaBolsa.vue'
     import TermoReferenciaImportacao from './TermoReferenciaImportacao.vue'
-    import termoReferenciaService from '../services/termoReferenciaService'
-    import {Tipos} from '../models/Tipos.js'
+    import { Tipos } from '../models/Tipos.js'
+    import { mapState, mapActions } from 'vuex'
+
     export default{
         data() {
             return {
@@ -74,42 +75,28 @@
             }
         },
         computed: {
-            termo: {
-                get() {
-                    return this.$store.getters.termo
-                },
-                set(value){
-                    this.$store.dispatch('updateTermo', value)
-                }
-            }
+            ...mapState([
+                'termo'
+            ])
         },
-        async created(){
+        async mounted(){
+            this.termos=[];
             switch(this.action){
                 case 'new':
-                    this.termo = (await termoReferenciaService.GetEmpty(this.selectedTipo)).data
-                    // this.termo.revisoes = [
-                    //     {codigoRevisao:1, revisor: 'Leonardo Freire', documento: { objeto: "teste revisao1"}},
-                    //     {codigoRevisao:1, revisor: "lEO", data: '11/12/2017', documento: { objeto: "teste revisao1", prazo: "teste revisao 1 prazo"}}
-                    // ]
+                    this.newTermo(this.selectedTipo)
                 break;
                 case 'edit':
-                    console.log("EDIT EDIT EDIT EDIT EDIT EDIT EDIT ", this.id)
-                    this.termo = (await termoReferenciaService.GetByIdAsync(this.id)).data
-                    console.log(this.termo.documento.objeto)
+                    this.loadTermo(this.id)
                 break;
             }
+            
         },
         destroyed(){
-            this.termo = {};
+            this.clearTermo()
         },
         methods: {
             async save(){
-                let res=''
-                if(!this.termo.numero){
-                    res = await termoReferenciaService.SaveAsync(this.termo);
-                } else {
-                    res = await termoReferenciaService.UpdateAsync(this.termo);
-                }
+                const res = await this.saveTermo();
                 if(res.status === 200){
                     console.log('gravado com sucesso')
                     this.$router.push('/')
@@ -119,11 +106,17 @@
 
                 
             },
-            async changeTipo(e){
+            changeTipo(e){
                 this.selectedTipo = e.target.value
-                this.termo = (await termoReferenciaService.GetEmpty(this.selectedTipo)).data
-                
-            }
+                this.newTermo(this.selectedTipo)
+            },
+            ...mapActions([
+                'loadTermo',
+                'clearTermo',
+                'newTermo',
+                'saveTermo',
+                'updateTermo'
+            ])
         },
         components: {
             appTermoReferenciaPessoaFisica : TermoReferenciaPessoaFisica,

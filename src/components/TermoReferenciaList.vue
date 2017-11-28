@@ -35,23 +35,30 @@
 <script>
     import { Tipos } from '../models/Tipos'
     import { Status } from '../models/Status'
-    import termoReferenciaService from '../services/termoReferenciaService'
+    import { mapState, mapActions } from 'vuex'
     export default{
         
         data(){
             return{
               Tipos: Tipos,
-              Status: Status,
-              termos:[]
+              Status: Status
             }
         }, 
-        async created(){
-            this.termos = (await termoReferenciaService.GetAsync()).data
+        computed: {
+            ...mapState([
+                'termos'
+            ])
+        },
+        mounted(){
+            this.loadTermos()
         },    
         methods: {
             editarTermo(id){
                 this.$router.push(`/termo/edit/${id}`)
-            }
+            },
+            ...mapActions([
+                'loadTermos'
+            ])
         }
         
     }
