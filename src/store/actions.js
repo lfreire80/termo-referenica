@@ -37,11 +37,17 @@ const saveTermo = async ({state}) => {
     return response.data
 }
 
+const deleteTermo = async({},id) => {
+    console.log('DELETE_TERMO', id)
+    await axios.delete(url + `/${id}`)
+}
+
 export default{
     loadTermos,
     updateTermo,
     clearTermo,
     loadTermo,
     newTermo,
-    saveTermo
+    saveTermo,
+    deleteTermo
 }
