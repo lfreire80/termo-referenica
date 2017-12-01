@@ -10,7 +10,7 @@
                      class="form-control"  
                      v-model="termo.tipo"
                      @change="changeTipo($event)"
-                     :disabled="action != 'edit' ? disabled : ''">
+                     :disabled="action == 'edit'">
                     <option v-for="(tipo, index) in tipos" :value="index" :key="index" :selected="termo.tipo == index">{{tipo}}</option>
                 </select>
             </div>

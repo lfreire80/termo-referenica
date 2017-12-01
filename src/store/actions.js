@@ -21,8 +21,7 @@ const loadTermo = async ({commit} ,id) => {
 }
 
 const newTermo = async ({commit}, id) => {
-    const  termo = (await axios.get(url + `/empty/${id}`)).data.data
-    console.log(termo)
+    const  termo = (await axios.get(url + `/empty/${id}`)).data.data 
     commit('UPDATE_TERMO', termo)
 }
 
