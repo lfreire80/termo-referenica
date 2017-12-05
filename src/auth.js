@@ -1,0 +1,7 @@
+const AUTH_TOKEN = 'Bearer ' + getAuthTokenFromCoook()
+
+function getAuthTokenFromCoook(){
+    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImZ1amJfdGVzdGUiLCJpZFVzdWFyaW8iOjIsImV4cCI6eyJUaWNrcyI6MTgwMDAwMDAwMDAsIkRheXMiOjAsIkhvdXJzIjowLCJNaWxsaXNlY29uZHMiOjAsIk1pbnV0ZXMiOjMwLCJTZWNvbmRzIjowLCJUb3RhbERheXMiOjAuMDIwODMzMzMzMzMzMzMzMzMyLCJUb3RhbEhvdXJzIjowLjUsIlRvdGFsTWlsbGlzZWNvbmRzIjoxODAwMDAwLCJUb3RhbE1pbnV0ZXMiOjMwLCJUb3RhbFNlY29uZHMiOjE4MDB9fQ.QgtzUwHjHE4q368WJg5EMpqaCqLM3BnISRSqfmcTfJg"
+}
+
+export { AUTH_TOKEN }

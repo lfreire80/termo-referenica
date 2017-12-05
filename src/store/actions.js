@@ -1,6 +1,9 @@
 import axios from 'axios'
+import { AUTH_TOKEN } from '../auth'
 
 const url = 'http://192.168.1.31/FujbPortal.API/api/termoreferencia'
+
+axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
 const loadTermos = async ({commit}) => {
     const termos = (await axios.get(url)).data.data
