@@ -8,6 +8,7 @@
                  :tooltipMsg = "termo.modelo.objeto"
                  v-model = "termo.documento.objeto"
                  :comentarios = "getComentarios('objeto')"
+                 @addComentario="addComentario('objeto')"
                  @updated="termo.documento.objeto = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -18,6 +19,7 @@
                  :tooltipMsg = "termo.modelo.justificativa"
                  v-model = "termo.documento.justificativa"
                  :comentarios = "getComentarios('justificativa')"
+                 @addComentario="addComentario('justificativa')"
                  @updated="termo.documento.justificativa = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -28,6 +30,7 @@
                  :tooltipMsg = "termo.modelo.especificacao"
                  v-model = "termo.documento.especificacao"
                  :comentarios = "getComentarios('especificacao')"
+                 @addComentario="addComentario('especificacao')"
                  @updated="termo.documento.especificacao = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -39,6 +42,7 @@
                  :tooltipMsg = "termo.modelo.prazo"
                  v-model = "termo.documento.prazo"
                  :comentarios = "getComentarios('prazo')"
+                 @addComentario="addComentario('prazo')"
                  @updated="termo.documento.prazo = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -49,6 +53,7 @@
                  :tooltipMsg = "termo.modelo.condicoes"
                  v-model = "termo.documento.condicoes"
                  :comentarios = "getComentarios('condicoes')"
+                 @addComentario="addComentario('condicoes')"
                  @updated="termo.documento.condicoes = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -59,6 +64,7 @@
                  :tooltipMsg = "termo.modelo.condicoesDeGarantia"
                  v-model = "termo.documento.condicoesDeGarantia"
                  :comentarios = "getComentarios('condicoesDeGarantia')"
+                 @addComentario="addComentario('condicoesDeGarantia')"
                  @updated="termo.documento.condicoesDeGarantia = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -69,6 +75,7 @@
                  :tooltipMsg = "termo.modelo.responsavel"
                  v-model = "termo.documento.responsavel"
                  :comentarios = "getComentarios('responsavel')"
+                 @addComentario="addComentario('responsavel')"
                  @updated="termo.documento.responsavel = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -79,6 +86,7 @@
                  :tooltipMsg = "termo.modelo.qualificacao"
                  v-model = "termo.documento.qualificacao"
                  :comentarios = "getComentarios('qualificacao')"
+                 @addComentario="addComentario('qualificacao')"
                  @updated="termo.documento.qualificacao = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -89,6 +97,7 @@
                  :tooltipMsg = "termo.modelo.criterio"
                  v-model = "termo.documento.criterio"
                  :comentarios = "getComentarios('criterio')"
+                 @addComentario="addComentario('criterio')"
                  @updated="termo.documento.criterio = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -133,6 +142,9 @@
                     })  
                 }
                 return comentarios
+            },
+            addComentario(campo){
+                this.$emit("addComentario", campo);
             }
         },
         components:{

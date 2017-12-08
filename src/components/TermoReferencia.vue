@@ -35,20 +35,25 @@
         </div>
        
         <app-termo-referencia-pessoa-fisica
+                @addComentario="addComentario(event)"
                 :termo="termo"
                 v-if="termo.tipo === 1">
         </app-termo-referencia-pessoa-fisica>
 
         <app-termo-referencia-pessoa-juridica
-                :termo="termo" v-else-if="termo.tipo === 2">
+                 @addComentario="addComentario($event)"
+                :termo="termo" 
+                v-else-if="termo.tipo === 2">
         </app-termo-referencia-pessoa-juridica>
 
         <app-termo-referencia-bolsa
+                 @addComentario="addComentario($event)"              
                 :termo="termo"
                 v-else-if="termo.tipo === 3">
         </app-termo-referencia-bolsa>
 
         <app-termo-referencia-importacao
+                @addComentario="addComentario($event)"   
                 @updated="update($event)"
                 :termo="termo"
                 v-else-if="termo.tipo === 4">
@@ -58,6 +63,26 @@
             <button type="button" class="btn btn-sm btn-primary" @click="save()">Salvar</button>
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
 </template>
 
@@ -112,6 +137,9 @@
 
                 
             },
+            addComentario(e){
+                $('#myModal').modal();
+            },
             changeTipo(e){
                 this.selectedTipo = e.target.value
                 this.newTermo(this.selectedTipo)
@@ -146,6 +174,13 @@
     label{
         font-weight: bold;
     }
+
+    .commentWindow{
+        position: absolute;
+        display: block;
+        cursor:url(http://placehold.it/50x30) 25 15, auto;
+    }
+
     @media print{
         input {
             border: none;

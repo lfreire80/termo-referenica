@@ -5,6 +5,11 @@
             <span class="right-span">
                 <button 
                     type="button"
+                    @click="addComentario()"
+                    class="btn btn-sm my-btn-revisoes">+
+                </button>
+                <button 
+                    type="button"
                     @click="showComentarios = !showComentarios"
                     v-if="comentarios.length > 0"
                     class="btn btn-sm my-btn-revisoes">Comentários {{comentarios.length}}
@@ -28,7 +33,7 @@
             :show="showComentarios"
             :bgColor="'#fffcf4'"
             :bdColor="'#ce9e1c'">
-                <div class="comentario-header">{{ comentario.usuario }} - {{ comentario.data}}</div>
+                <div class="comentario-header">{{ comentario.revisor }} - {{ comentario.data}}</div>
                 <p>{{comentario.comentario }}</p>
         </app-tooltip>
         <textarea-autosize 
@@ -64,6 +69,9 @@
                 console.log('emit')
                 this.$emit('updated', e.target.value)
                 
+            },
+            addComentario(){
+                this.$emit("addComentario")
             }
 
         }
