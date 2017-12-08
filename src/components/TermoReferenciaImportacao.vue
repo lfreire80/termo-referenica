@@ -7,6 +7,7 @@
                 :tooltipMsg = "termo.modelo.objeto"
                 v-model = "termo.documento.objeto"
                 :comentarios = "getComentarios('objeto')"
+                @addComentario="addComentario('objeto')"
                 @updated="termo.documento.objeto = $event; $store.dispatch('updateTermo', termo)"
                 >
           </app-documento-field>
@@ -17,6 +18,7 @@
                 :tooltipMsg = "termo.modelo.contextualizacao"
                 v-model = "termo.documento.contextualizacao"
                 :comentarios = "getComentarios('contextualizacao')"
+                @addComentario="addComentario('contextualizacao')"
                 @updated="termo.documento.contextualizacao = $event; $store.dispatch('updateTermo', termo)"
                 >
           </app-documento-field>
@@ -27,6 +29,7 @@
                 :tooltipMsg = "termo.modelo.material"
                 v-model = "termo.documento.material"
                 :comentarios = "getComentarios('material')"
+                @addComentario="addComentario('material')"
                 @updated="termo.documento.material = $event; $store.dispatch('updateTermo', termo)"
                 >
           </app-documento-field>
@@ -37,6 +40,7 @@
                 :tooltipMsg = "termo.modelo.local"
                 v-model = "termo.documento.local"
                 :comentarios = "getComentarios('local')"
+                @addComentario="addComentario('local')"
                 @updated="termo.documento.local = $event; $store.dispatch('updateTermo', termo)"
                 >
           </app-documento-field>
@@ -47,6 +51,7 @@
                  :tooltipMsg = "termo.modelo.juntadaDocumento"
                  v-model = "termo.documento.juntadaDocumento"
                  :comentarios = "getComentarios('juntadaDocumento')"
+                 @addComentario="addComentario('juntadaDocumento')"
                  @updated="termo.documento.juntadaDocumento = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -57,6 +62,7 @@
                  :tooltipMsg = "termo.modelo.fonte"
                  v-model = "termo.documento.fonte"
                  :comentarios = "getComentarios('fonte')"
+                 @addComentario="addComentario('fonte')"
                  @updated="termo.documento.fonte = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -67,6 +73,7 @@
                  :tooltipMsg = "termo.modelo.justificativa"
                  v-model = "termo.documento.justificativa"
                  :comentarios = "getComentarios('justificativa')"
+                 @addComentario="addComentario('justificativa')"
                  @updated="termo.documento.justificativa = $event; $store.dispatch('updateTermo', termo)"
                  >
             </app-documento-field>
@@ -110,6 +117,9 @@
                     })  
                 }
                 return comentarios
+            },
+            addComentario(campo){
+                this.$emit("addComentario", campo);
             }
         },
         components:{

@@ -17,11 +17,6 @@ const clearTermo = ({commit}) => {
 
 const loadTermo = async ({commit} ,id) => {
     const termo = (await axios.get(url + `/${id}`)).data.data
-    termo.revisoes = [ {revisor: "Leonardo Freire", data: "08/12/2017", documento: {
-        objeto : "comentario 1"
-    }},{revisor: "Leonardo Freire", data: "08/12/2017", documento: {
-        justificativa : "comentario 1"
-    }}]
     commit('UPDATE_TERMO', termo)
 }
 
@@ -32,6 +27,7 @@ const newTermo = async ({commit}, id) => {
 
 const saveTermo = async ({state}) => {
     const termo = state.termo
+    console.log(termo.revisoes)
     let response = ''
     if(!termo.numero){
         response = await axios.post(url, termo)

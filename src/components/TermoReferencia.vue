@@ -65,24 +65,29 @@
         </div>
 
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Digitar comentário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea-autosize 
+                        id="comentarioForm"
+                        class="form-control comentarioForm" 
+                        v-model = "comentario">
+                        <!-- @change.native="updated($event)" > -->
+                    </textarea-autosize>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-sm btn-primary" @click="saveComentario()">Gravar</button>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -101,7 +106,10 @@
                 id: this.$route.params.id,
                 action: this.$route.params.action,
                 tipos: Tipos,
-                selectedTipo: 1 //default
+                selectedTipo: 1, //default
+
+                comentario: '',
+                tipoComentario:''
             }
         },
         computed: {
@@ -138,7 +146,23 @@
                 
             },
             addComentario(e){
-                $('#myModal').modal();
+                this.tipoComentario = e;
+                this.comentario = ''
+                $('#comentarioForm').focus()
+                $('#myModal').modal()
+            },
+            saveComentario(){
+                const revisao = {
+                    revisor: 'Leoanrdo Freire',
+                    data: "08/12/2017",
+                    documento: {}
+                }
+                revisao.documento[this.tipoComentario] = this.comentario
+                this.termo.revisoes.push(revisao)
+
+                this.updateTermo(this.termo);
+                $('#myModal').modal('hide')
+
             },
             changeTipo(e){
                 this.selectedTipo = e.target.value
@@ -175,10 +199,9 @@
         font-weight: bold;
     }
 
-    .commentWindow{
-        position: absolute;
-        display: block;
-        cursor:url(http://placehold.it/50x30) 25 15, auto;
+    .comentarioForm{
+        height: 50px;
+        font-size:10px;
     }
 
     @media print{
