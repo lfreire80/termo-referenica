@@ -21,7 +21,7 @@
             <th>Data</th>
             <th>Tipo</th>
             <th>Status</th>
-            <th colspan="3">Ações</th>
+            <th colspan="4">Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +33,9 @@
             <td :class="{ grid_color : key % 2 != 0}">{{ new Date(termo.data).toLocaleDateString() }}</td>
             <td :class="{ grid_color : key % 2 != 0}">{{ Tipos[termo.tipo] }}</td>
             <td :class="{ grid_color : key % 2 != 0}">{{ Status[termo.status] }}</td>
+            <td :class="{ grid_color : key % 2 != 0}">
+                <a href="#" @click="visualizarTermo(termo.numero)"><img alt="Visualizar termo de referência" title="Visualizar termo de referência" src="../assets/search.svg" /></a>
+            </td>
             <td :class="{ grid_color : key % 2 != 0}">
                 <a href="#" @click="editarTermo(termo.numero)"><img alt="Editar termo de referência" title="Editar termo de referência" src="../assets/book.svg" /></a>
             </td>
@@ -63,7 +66,8 @@
         }, 
         computed: {
             ...mapState([
-                'termos'
+                'termos',
+                'usuario'
             ])
         },
         mounted(){
@@ -72,6 +76,9 @@
         methods: {
             editarTermo(id){
                 this.$router.push(`/termo/edit/${id}`)
+            },
+            visualizarTermo(id){
+                this.$router.push(`/termo/view/${id}`)
             },
             async del(id){
                 console.log(id)
@@ -107,7 +114,6 @@
 
     table tr td{
         padding: 5px;
-        cursor: pointer;
         
     }
 

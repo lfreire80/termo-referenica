@@ -14,6 +14,11 @@ const updateTermo = ({commit}, payload) => {
     commit('UPDATE_TERMO', payload)
 }
 
+const updateUsuario = ({commit}, payload) => {
+    commit('UPDATE_USUARIO', payload)
+}
+
+
 const clearTermo = ({commit}) => {
     commit('UPDATE_TERMO', {})
 }
@@ -52,5 +57,6 @@ export default{
     loadTermo,
     newTermo,
     saveTermo,
-    deleteTermo
+    deleteTermo,
+    updateUsuario
 }

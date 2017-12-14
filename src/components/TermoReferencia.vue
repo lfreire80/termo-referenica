@@ -1,7 +1,7 @@
 <template>
     <div class="content-box-inner">
         <div class="text-center">
-            <h1>TERMO DE REFERÊNCIA Nº XXXX/2017</h1>
+            <h1>TERMO DE REFERÊNCIA Nº {{termo.numero}}</h1>
         </div>
         <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">TIPO:</label>
@@ -61,6 +61,7 @@
 
         <div class=text-right >
             <button type="button" class="btn btn-sm btn-primary" @click="save()">Salvar</button>
+            <button type="button" class="btn btn-sm btn-success" @click="aprovarComentario()">Aprovar</button>
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
 
@@ -126,6 +127,9 @@
                 case 'edit':
                     this.loadTermo(this.id)
                 break;
+                case 'view':
+                    this.loadTermo(this.id)
+                break;
             }
             
         },
@@ -160,8 +164,16 @@
                 revisao.documento[this.tipoComentario] = this.comentario
                 this.termo.revisoes.push(revisao)
 
-                this.updateTermo(this.termo);
+                this.updateTermo(this.termo)
                 $('#myModal').modal('hide')
+
+            },
+            aprovarComentario(){
+                this.termo.status = 4
+                this.updateTermo(this.termo)
+                this.saveTermo()
+                alert('Termo aprovado com sucesso')   
+
 
             },
             changeTipo(e){

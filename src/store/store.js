@@ -8,11 +8,16 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         termo: {},
-        termos: []
+        termos: [],
+        usuario: {
+            login: 'fujb_teste',
+            idUsuario: 1
+        }
     },
     mutations: {
         'UPDATE_TERMO': (state, payload) => state.termo = payload,
-        'UPDATE_TERMOS': (state, payload) => state.termos = payload
+        'UPDATE_TERMOS': (state, payload) => state.termos = payload,
+        'UPDATE_USUARIO': (state, payload) => state.usuario = payload
     },
     actions
 })

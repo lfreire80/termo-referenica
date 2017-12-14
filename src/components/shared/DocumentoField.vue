@@ -6,6 +6,7 @@
                 <button 
                     type="button"
                     @click="addComentario()"
+                    v-if="usuario.idUsuario == 1"
                     class="btn btn-sm my-btn-revisoes">+
                 </button>
                 <button 
@@ -46,6 +47,7 @@
 
 <script>
     import Tooltip from './Tooltip.vue'
+    import { mapState } from 'vuex'
     export default{
         props: [
             'titulo',
@@ -60,6 +62,11 @@
                 internalValue : this.value,
                 internalShowTooltip : this.showTooltip
             }
+        },
+        computed: {
+            ...mapState([
+                'usuario'
+            ])
         },
         components:{
             appTooltip: Tooltip
