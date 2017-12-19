@@ -61,7 +61,7 @@
 
         <div class=text-right >
             <button type="button" class="btn btn-sm btn-primary" @click="save()">Salvar</button>
-            <button type="button" class="btn btn-sm btn-success" @click="aprovarComentario()">Aprovar</button>
+            <button v-if="action == 'view'" type="button" class="btn btn-sm btn-success" @click="aprovarComentario()">Aprovar</button>
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
 
