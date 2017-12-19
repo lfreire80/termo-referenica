@@ -12,7 +12,8 @@ Vue.use(VueTextareaAutosize)
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
+  mode: 'history',
+  base: '/Portal/termo-referencia/'
 })
 
 new Vue({
