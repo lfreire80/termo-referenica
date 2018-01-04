@@ -5,9 +5,11 @@ const url = 'http://192.168.1.31/FujbPortal.API/api/termoreferencia'
 
 axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
+
 const loadTermos = async ({commit}) => {
     const termos = (await axios.get(url)).data.data
     commit('UPDATE_TERMOS', termos.sort((a,b) => a.numero - b.numero))
+    
 }
 
 const updateTermo = ({commit}, payload) => {

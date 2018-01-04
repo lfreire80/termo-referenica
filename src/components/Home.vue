@@ -10,6 +10,18 @@
     </div>
 </template>
 
+<script>
+import { AUTH_TOKEN } from '../auth'
+export default {
+    mounted(){
+        if (AUTH_TOKEN == 'Bearer undefined'){
+            window.location = '../';
+        }
+    }
+}
+</script>
+
+
 <style scoped>
     .my-btn{
         font-size: 12px; 
