@@ -6,7 +6,7 @@
                 <button 
                     type="button"
                     @click="addComentario()"
-                    v-if="usuario.idUsuario == 1"
+                    v-if="usuario.perfil == 6"
                     class="btn btn-sm my-btn-revisoes">+
                 </button>
                 <button 

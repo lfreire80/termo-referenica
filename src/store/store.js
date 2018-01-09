@@ -10,9 +10,9 @@ export const store = new Vuex.Store({
         termo: {},
         termos: [],
         usuario: {
-            login: 'fujb_teste',
-            idUsuario: 1
-        }
+            processos: []
+        },
+       
     },
     mutations: {
         'UPDATE_TERMO': (state, payload) => state.termo = payload,

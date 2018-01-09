@@ -1,8 +1,21 @@
-const AUTH_TOKEN = 'Bearer ' + getAuthTokenFromCoook()
+const AUTH_TOKEN = 'Bearer ' + getToken()
+const USER = getUser()
 
-function getAuthTokenFromCoook(){
-    const cookie = document.cookie;
-    return cookie.split('=')[1];
+function getToken(){
+    const cookies = getAuthTokenFromCookie()
+    return cookies[0].split('=')[1]
 }
 
-export { AUTH_TOKEN }
+function getUser(){
+    const cookies = getAuthTokenFromCookie()
+    return {
+        id: cookies[1].split('=')[1],
+        perfil : cookies[2].split('=')[1]
+    }
+}
+
+function getAuthTokenFromCookie(){
+    return document.cookie.split(';')
+}
+
+export { AUTH_TOKEN, USER }
