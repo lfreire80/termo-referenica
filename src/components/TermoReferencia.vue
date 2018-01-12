@@ -115,7 +115,8 @@
         },
         computed: {
             ...mapState([
-                'termo'
+                'termo',
+                'usuario'
             ])
         },
         async mounted(){
@@ -138,16 +139,24 @@
         },
         methods: {
             async save(){
-                const res = await this.saveTermo();
-                if(res.status === 200){
-                    alert('Gravado com Sucesso')
-                    this.$router.push('/')
+                if(this.validaProcesso()){
+                    const res = await this.saveTermo();
+                    if(res.status === 200){
+                        alert('Gravado com Sucesso')
+                        this.$router.push('/')
+                    } else {
+                        console.log('erro ao gravar')
+                        alert('Erro ao gravar!')
+                    }
                 } else {
-                    console.log('erro ao gravar')
-                    alert('Erro ao gravar!')
+                    alert('Você não possui autorização para este Processo FUJB')
                 }
 
                 
+            },
+            validaProcesso(){
+                // Verifica se usuario corrente tem autorização para emissão de termo para este processo.
+                return this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.trim()).length > 0
             },
             addComentario(e){
                 this.tipoComentario = e;
