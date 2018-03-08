@@ -35,7 +35,7 @@
         </div>
        
         <app-termo-referencia-pessoa-fisica
-                @addComentario="addComentario(event)"
+                @addComentario="addComentario($event)"
                 :termo="termo"
                 v-if="termo.tipo === 1">
         </app-termo-referencia-pessoa-fisica>
@@ -156,7 +156,8 @@
             },
             validaProcesso(){
                 // Verifica se usuario corrente tem autorização para emissão de termo para este processo.
-                return this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.trim()).length > 0
+                console.log(this.termo);
+                return this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.toString().trim()).length > 0
             },
             addComentario(e){
                 this.tipoComentario = e;
