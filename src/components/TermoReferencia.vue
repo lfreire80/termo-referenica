@@ -155,7 +155,7 @@
                 
             },
             validaProcesso(){
-                // Verifica se usuario corrente tem autorização para emissão de termo para este processo.
+                // Verifica se usuario corrente tem autorização para emissão de termo para este processo...
                 console.log(this.termo);
                 return this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.toString().trim()).length > 0
             },
