@@ -179,12 +179,16 @@
 
             },
             aprovarComentario(){
-                this.termo.status = 4
-                this.updateTermo(this.termo)
-                this.saveTermo()
+                aprovaTermo(this.termo.numero);
                 alert('Termo aprovado com sucesso')   
-
-
+            },
+            encaminhaTermo(){
+                encaminhaTermo(this.termo.numero);
+                alert('Termo encaminhado com sucesso')   
+            },
+            encaminharParaRevisaoTermo(){
+                encaminharParaRevisaoTermo(this.termo.numero);
+                alert('Termo encaminhando para revisão com sucesso')   
             },
             changeTipo(e){
                 this.selectedTipo = e.target.value
@@ -195,7 +199,10 @@
                 'clearTermo',
                 'newTermo',
                 'saveTermo',
-                'updateTermo'
+                'updateTermo',
+                'aprovaTermo',
+                'encaminhaTermo',
+                'encaminharParaRevisaoTermo'
             ])
         },
         components: {

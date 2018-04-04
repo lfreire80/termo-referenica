@@ -52,8 +52,19 @@ const saveTermo = async ({state}) => {
 }
 
 const deleteTermo = async({},id) => {
-    console.log('DELETE_TERMO', id)
     await axios.delete(URL_TERMO + `/${id}`)
+}
+
+const aprovaTermo = async({}, id) => {
+    await axios.post(URL_TERMO + `/aprovar/${id}`)
+}
+
+const encaminhaTermo = async({}, id) => {
+    await axios.post(URL_TERMO + `/encaminhar/${id}`)
+}
+
+const encaminharParaRevisaoTermo = async({}, id) => {
+    await axios.post(URL_TERMO + `/pararevisao/${id}`)
 }
 
 export default{
@@ -64,5 +75,8 @@ export default{
     newTermo,
     saveTermo,
     deleteTermo,
-    updateUsuario
+    updateUsuario,
+    aprovaTermo,
+    encaminhaTermo,
+    encaminharParaRevisaoTermo
 }
