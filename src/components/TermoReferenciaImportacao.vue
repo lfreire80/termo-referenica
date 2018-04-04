@@ -3,6 +3,8 @@
        <div class="form-group">
           <app-documento-field
                 titulo = "1. OBJETIVO DA AQUISIÇÃO / IMPORTAÇÃO"
+                :somenteLeitura = "somenteLeitura"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showObjeto"
                 :tooltipMsg = "termo.modelo.objeto"
                 v-model = "termo.documento.objeto"
@@ -14,6 +16,8 @@
 
           <app-documento-field
                 titulo = "2. CONTEXTUALIZAÇÃO / JUSTIFICATIVA TÉCNICA"
+                :somenteLeitura = "somenteLeitura"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showContextualizcao"
                 :tooltipMsg = "termo.modelo.contextualizacao"
                 v-model = "termo.documento.contextualizacao"
@@ -25,6 +29,8 @@
 
             <app-documento-field
                 titulo = "3. DETALHAMENTO DO MATERIAL / EQUIPAMENTO"
+                :somenteLeitura = "somenteLeitura"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showMaterial"
                 :tooltipMsg = "termo.modelo.material"
                 v-model = "termo.documento.material"
@@ -36,6 +42,8 @@
 
           <app-documento-field
                 titulo = "4. LOCAL DE ENTREGA DO MATERIAL / EQUIPAMENTO"
+                :somenteLeitura = "somenteLeitura"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showLocal"
                 :tooltipMsg = "termo.modelo.local"
                 v-model = "termo.documento.local"
@@ -47,6 +55,8 @@
 
            <app-documento-field
                  titulo = "5. JUNTA DE DOCUMENTOS"
+                 :somenteLeitura = "somenteLeitura"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showJuntadaDocumento"
                  :tooltipMsg = "termo.modelo.juntadaDocumento"
                  v-model = "termo.documento.juntadaDocumento"
@@ -58,6 +68,9 @@
 
             <app-documento-field
                  titulo = "6. FONTE DE RECURSOS"
+                 :somenteLeitura = "somenteLeitura"
+                 :somenteLeitura = "somenteLeitura"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showFonte"
                  :tooltipMsg = "termo.modelo.fonte"
                  v-model = "termo.documento.fonte"
@@ -69,6 +82,8 @@
 
             <app-documento-field
                  titulo = "7. JUSTIFICATIVA DE VALOR E BEM À SER IMPORTADO"
+                 :somenteLeitura = "somenteLeitura"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showJustificativa"
                  :tooltipMsg = "termo.modelo.justificativa"
                  v-model = "termo.documento.justificativa"
@@ -98,9 +113,13 @@
                     showJuntadaDocumento: false,
                     showFonte: false,
                     showJustificativa: false
-                }
+                },
+                somenteLeitura : false
             }
         },
+        props: [
+            'somenteLeitura'
+        ],
         computed: {
             ...mapState([
                 'termo'

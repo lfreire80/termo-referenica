@@ -21,7 +21,7 @@
             <th>Data</th>
             <th>Tipo</th>
             <th>Status</th>
-            <th colspan="4">Ações</th>
+            <th colspan="6">Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -37,10 +37,16 @@
                 <a href="#" @click="visualizarTermo(termo.numero)"><img alt="Visualizar termo de referência" title="Visualizar termo de referência" src="../assets/search.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
-                <a href="#" @click="editarTermo(termo.numero)"><img alt="Editar termo de referência" title="Editar termo de referência" src="../assets/book.svg" /></a>
+                <a href="#" @click="editarTermo(termo.numero)" v-show="termo.status == 1 || termo.status == 3"><img alt="Editar termo de referência" title="Editar termo de referência" src="../assets/book.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
-                <a href="#"><img alt="Enviar termo de referência" title="Enviar termo de referência" src="../assets/arrow-up.svg" /></a>
+                <a href="#" @click="encaminha(termo.numero)" v-show="termo.status == 1 || termo.status == 3"><img alt="Enviar termo de referência" title="Enviar termo de referência" src="../assets/arrow-up.svg" /></a>
+            </td>
+            <td :class="{ grid_color : key % 2 != 0}">
+                <a href="#" @click="aprova(termo.numero)" v-show="termo.status == 2"><img alt="Aprova termo de referência" title="Aprova termo de referência" src="../assets/thumbsup.svg" /></a>
+            </td>
+            <td :class="{ grid_color : key % 2 != 0}">
+                <a href="#" @click="retorna(termo.numero)" v-show="termo.status == 2 || termo.status == 4"><img alt="Encaminha termo de referência para revisão" title="Encaminha termo de referência para revisão" src="../assets/thumbsdown.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
                 <a href="#" @click="del(termo.numero)"><img alt="Excluir termo de referência" title="Excluir termo de referência" src="../assets/trashcan.svg" /></a>
@@ -80,16 +86,36 @@
             visualizarTermo(id){
                 this.$router.push(`/termo/view/${id}`)
             },
+            async encaminha(id){
+                if(confirm("Deseja mesmo ENCAMINHAR este termo de refência!")){
+                    await this.encaminhaTermo(id)
+                    await this.loadTermos()
+                }
+            },
+            async aprova(id){
+                if(confirm("Deseja mesmo APROVAR este termo de refência!")){
+                    await this.aprovaTermo(id)
+                    await this.loadTermos()
+                }
+            },
+            async retorna(id){
+                if(confirm("Deseja mesmo RETORNAR este termo de refência para revisão!")){
+                    await this.encaminharParaRevisaoTermo(id)
+                    await this.loadTermos()
+                }
+            },
             async del(id){
-                console.log(id)
-                if(confirm("Deseja mesmo excluir este termo de refência!")){
+                if(confirm("Deseja mesmo EXCLUIR este termo de refência!")){
                     await this.deleteTermo(id)
                     await this.loadTermos()
                 }
             },
             ...mapActions([
                 'loadTermos',
-                'deleteTermo'
+                'deleteTermo',
+                'encaminhaTermo',
+                'aprovaTermo',
+                'encaminharParaRevisaoTermo'
             ]),
            
         }

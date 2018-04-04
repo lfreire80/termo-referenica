@@ -3,6 +3,7 @@
        <div class="form-group">
           <app-documento-field
                 titulo = "1. OBJETO"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showObjeto"
                 :tooltipMsg = "termo.modelo.objeto"
                 v-model = "termo.documento.objeto"
@@ -14,6 +15,7 @@
 
           <app-documento-field
                 titulo = "2. JUSTIFICATIVA DA CONTRATAÇÃO"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showJustificativa"
                 :tooltipMsg = "termo.modelo.justificativa"
                 v-model = "termo.documento.justificativa"
@@ -25,6 +27,7 @@
 
             <app-documento-field
                 titulo = "3. CRITÉRIO DE AVALIAÇÃO / MÉTODO DE SELEÇÃO"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showCriterio"
                 :tooltipMsg = "termo.modelo.criterio"
                 v-model = "termo.documento.criterio"
@@ -38,6 +41,7 @@
 
            <app-documento-field
                  titulo = "5. PRODUTO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showProduto"
                  :tooltipMsg = "termo.modelo.produto"
                  v-model = "termo.documento.produto"
@@ -49,6 +53,7 @@
 
             <app-documento-field
                  titulo = "6. APRESENTAÇÃO E APROVAÇÃO DO SERVIÇO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showApresentacao"
                  :tooltipMsg = "termo.modelo.apresentacao"
                  v-model = "termo.documento.apresentacao"
@@ -60,6 +65,7 @@
 
             <app-documento-field
                  titulo = "7. PRAZO, LOCAL E CONDIÇÕES DE EXECUÇÃO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showPrazo"
                  :tooltipMsg = "termo.modelo.prazo"
                  v-model = "termo.documento.prazo"
@@ -75,6 +81,7 @@
                      
             <app-documento-field
                  titulo = "10. OBRIGAÇÕES DO(A) PROFISSIONAL(ES) A SER CONTRATADO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showObrigacoes"
                  :tooltipMsg = "termo.modelo.obrigacoes"
                  v-model = "termo.documento.obrigacoes"
@@ -88,6 +95,7 @@
 
             <app-documento-field
                  titulo = "12. FONTE DE RECURSOS"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showFonte"
                  :tooltipMsg = "termo.modelo.fonte"
                  v-model = "termo.documento.fonte"
@@ -122,9 +130,12 @@
                     showObrigacoes: false,
                     showFonte: false
 
-                }
+                },
             }
         },
+        props: [
+            'somenteLeitura'
+        ],
         computed: {
             ...mapState([
                 'termo'

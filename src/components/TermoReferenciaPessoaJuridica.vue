@@ -4,6 +4,7 @@
 
             <app-documento-field
                  titulo = "1. OBJETO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showObjeto"
                  :tooltipMsg = "termo.modelo.objeto"
                  v-model = "termo.documento.objeto"
@@ -15,6 +16,7 @@
 
            <app-documento-field
                  titulo = "2. MOTIVAÇÃO / JUSTIFICATIVA"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showJustificativa"
                  :tooltipMsg = "termo.modelo.justificativa"
                  v-model = "termo.documento.justificativa"
@@ -26,6 +28,7 @@
 
            <app-documento-field
                  titulo = "3. ESPECIFICAÇÕES TÉCNICAS DO PRODUTO/SERVIÇO E INDICAÇÃO DA META E ETAPA"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showEspecificacao"
                  :tooltipMsg = "termo.modelo.especificacao"
                  v-model = "termo.documento.especificacao"
@@ -38,6 +41,7 @@
 
            <app-documento-field
                  titulo = "4. PRAZO, LOCAL E CONDIÇÕES DE ENTREGA OU EXECUÇÃO."
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showPrazo"
                  :tooltipMsg = "termo.modelo.prazo"
                  v-model = "termo.documento.prazo"
@@ -49,6 +53,7 @@
 
             <app-documento-field
                  titulo = "5. CONDIÇÕES E PRAZOS DE PAGAMENTO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showCondicoes"
                  :tooltipMsg = "termo.modelo.condicoes"
                  v-model = "termo.documento.condicoes"
@@ -60,6 +65,7 @@
 
             <app-documento-field
                  titulo = "6. CONDIÇÕES DE GARANTIA"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showCondicoesDeGarantia"
                  :tooltipMsg = "termo.modelo.condicoesDeGarantia"
                  v-model = "termo.documento.condicoesDeGarantia"
@@ -71,6 +77,7 @@
 
             <app-documento-field
                  titulo = "7. RESPONSÁVEL TÉCNICO PELO RECEBIMENTO E APROVAÇÃO DAS MEDIÇÕES"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showResponsavel"
                  :tooltipMsg = "termo.modelo.responsavel"
                  v-model = "termo.documento.responsavel"
@@ -82,6 +89,7 @@
 
             <app-documento-field
                  titulo = "8. QUALIFICAÇÃO TÉCNICA"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showQualificacao"
                  :tooltipMsg = "termo.modelo.qualificacao"
                  v-model = "termo.documento.qualificacao"
@@ -93,6 +101,7 @@
 
             <app-documento-field
                  titulo = "9. CRITÉRIOS DE AVALIAÇÃO DAS PROPOSTAS"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showCriterio"
                  :tooltipMsg = "termo.modelo.criterio"
                  v-model = "termo.documento.criterio"
@@ -126,6 +135,9 @@
                 }
             }
         },
+        props: [
+            'somenteLeitura'
+        ],
         computed: {
             ...mapState([
                 'termo'

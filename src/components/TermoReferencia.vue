@@ -10,7 +10,7 @@
                      class="form-control"  
                      v-model="termo.tipo"
                      @change="changeTipo($event)"
-                     :disabled="action == 'edit'">
+                     :disabled="action != 'new'">
                     <option v-for="(tipo, index) in tipos" :value="index" :key="index" :selected="termo.tipo == index">{{tipo}}</option>
                 </select>
             </div>
@@ -18,37 +18,40 @@
          <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">PROCESSO FUJB:</label>
             <div class="col-5">
-                <input class="form-control" type="text" id="processo" v-model="termo.processo">
+                <input class="form-control" type="text" id="processo" v-model="termo.processo" :disabled="action == 'view'">
             </div>
         </div>
         <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">PROJETO:</label>
             <div class="col-5">
-                <input class="form-control" type="text" id="projeto" v-model="termo.projeto" >
+                <input class="form-control" type="text" id="projeto" v-model="termo.projeto" :disabled="action == 'view'">
             </div>
         </div>
         <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">INSTITUIÇÃO FINANCEIRA:</label>
             <div class="col-5">
-                <input class="form-control" type="text" id="instituicaoFinanceira" v-model="termo.instituicaoFinanceira" >
+                <input class="form-control" type="text" id="instituicaoFinanceira" v-model="termo.instituicaoFinanceira" :disabled="action == 'view'" >
             </div>
         </div>
        
         <app-termo-referencia-pessoa-fisica
                 @addComentario="addComentario($event)"
                 :termo="termo"
+                :somenteLeitura="(action == 'view')"
                 v-if="termo.tipo === 1">
         </app-termo-referencia-pessoa-fisica>
 
         <app-termo-referencia-pessoa-juridica
                  @addComentario="addComentario($event)"
                 :termo="termo" 
+                :somenteLeitura="(action == 'view')"
                 v-else-if="termo.tipo === 2">
         </app-termo-referencia-pessoa-juridica>
 
         <app-termo-referencia-bolsa
                  @addComentario="addComentario($event)"              
                 :termo="termo"
+                :somenteLeitura="(action == 'view')"
                 v-else-if="termo.tipo === 3">
         </app-termo-referencia-bolsa>
 
@@ -56,12 +59,12 @@
                 @addComentario="addComentario($event)"   
                 @updated="update($event)"
                 :termo="termo"
+                :somenteLeitura="(action == 'view')"
                 v-else-if="termo.tipo === 4">
         </app-termo-referencia-importacao>
 
         <div class=text-right >
-            <button type="button" class="btn btn-sm btn-primary" @click="save()">Salvar</button>
-            <button v-if="action == 'view'" type="button" class="btn btn-sm btn-success" @click="aprovarComentario()">Aprovar</button>
+            <button type="button" class="btn btn-sm btn-primary" @click="save()" :disabled="(action == 'view')">Salvar</button>
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
 
@@ -108,7 +111,6 @@
                 action: this.$route.params.action,
                 tipos: Tipos,
                 selectedTipo: 1, //default
-
                 comentario: '',
                 tipoComentario:''
             }
@@ -178,14 +180,6 @@
                 $('#myModal').modal('hide')
 
             },
-            aprovarComentario(){
-                this.termo.status = 4
-                this.updateTermo(this.termo)
-                this.saveTermo()
-                alert('Termo aprovado com sucesso')   
-
-
-            },
             changeTipo(e){
                 this.selectedTipo = e.target.value
                 this.newTermo(this.selectedTipo)
@@ -195,7 +189,7 @@
                 'clearTermo',
                 'newTermo',
                 'saveTermo',
-                'updateTermo'
+                'updateTermo',
             ])
         },
         components: {

@@ -3,6 +3,7 @@
        <div class="form-group">
           <app-documento-field
                 titulo = "1. OBJETO"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showObjeto"
                 :tooltipMsg = "termo.modelo.objeto"
                 v-model = "termo.documento.objeto"
@@ -14,6 +15,7 @@
 
           <app-documento-field
                 titulo = "2. MOTIVAÇÃO / JUSTIFICATIVA"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showJustificativa"
                 :tooltipMsg = "termo.modelo.justificativa"
                 v-model = "termo.documento.justificativa"
@@ -25,6 +27,7 @@
 
             <app-documento-field
                 titulo = "3. CRITÉRIO DE AVALIAÇÃO / MÉTODO DE SELEÇÃO"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showCriterio"
                 :tooltipMsg = "termo.modelo.criterio"
                 v-model = "termo.documento.criterio"
@@ -36,6 +39,7 @@
 
           <app-documento-field
                 titulo = "4. ESPECIFICAÇÕES DAS ATIVIDADES E INDICAÇÃO DA META E ETAPA"
+                :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showEspecificacao"
                 :tooltipMsg = "termo.modelo.especificacao"
                 v-model = "termo.documento.especificacao"
@@ -47,6 +51,7 @@
 
            <app-documento-field
                  titulo = "5. PRODUTO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showProduto"
                  :tooltipMsg = "termo.modelo.produto"
                  v-model = "termo.documento.produto"
@@ -58,6 +63,7 @@
 
             <app-documento-field
                  titulo = "6. APRESENTAÇÃO E APROVAÇÃO DO PRODUTO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showApresentacao"
                  :tooltipMsg = "termo.modelo.apresentacao"
                  v-model = "termo.documento.apresentacao"
@@ -69,6 +75,7 @@
 
             <app-documento-field
                  titulo = "7. PRAZO, LOCAL E CONDIÇÕES DE EXECUÇÃO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showPrazo"
                  :tooltipMsg = "termo.modelo.prazo"
                  v-model = "termo.documento.prazo"
@@ -80,6 +87,7 @@
 
             <app-documento-field
                  titulo = "8. RESPONSABILIDADE PELA SUPERVISÃO DAS ATIVIDADES"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showResponsabilidade"
                  :tooltipMsg = "termo.modelo.responsabilidade"
                  v-model = "termo.documento.responsabilidade"
@@ -91,6 +99,7 @@
 
             <app-documento-field
                  titulo = "9. VALOR DA BOLSA E FORMAS DE CONCESSAO"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showValor"
                  :tooltipMsg = "termo.modelo.valor"
                  v-model = "termo.documento.valor"
@@ -102,6 +111,7 @@
 
             <app-documento-field
                  titulo = "10. OBRIGAÇÕES DO CONCEDENTE"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showObrigacoesConcendente"
                  :tooltipMsg = "termo.modelo.obrigacoesConcedente"
                  v-model = "termo.documento.obrigacoesConcedente"
@@ -113,6 +123,7 @@
             
             <app-documento-field
                  titulo = "11. OBRIGAÇÕES DO(A) BOLSISTA/PESQUISADOR"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showObrigacoes"
                  :tooltipMsg = "termo.modelo.obrigacoesBolsista"
                  v-model = "termo.documento.obrigacoesBolsista"
@@ -126,6 +137,7 @@
 
             <app-documento-field
                  titulo = "13. FONTE DE RECURSOS"
+                 :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showFonte"
                  :tooltipMsg = "termo.modelo.fonte"
                  v-model = "termo.documento.fonte"
@@ -166,6 +178,9 @@
                 }
             }
         },
+        props: [
+            'somenteLeitura'
+        ],
         computed: {
             ...mapState([
                 'termo'

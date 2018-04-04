@@ -38,6 +38,7 @@
                 <p>{{comentario.comentario }}</p>
         </app-tooltip>
         <textarea-autosize 
+            :disabled="somenteLeitura"
             class="form-control" 
             v-model = "internalValue"
             @change.native="updated($event)" >
@@ -54,7 +55,8 @@
             'showTooltip',
             'tooltipMsg',
             'value',
-            'comentarios'
+            'comentarios',
+            'somenteLeitura'
         ],
         data(){
             return {
