@@ -19,8 +19,8 @@
     <div class="content-box-inner">
     <div class="filtro" v-if="filtroHabilitado">
         <label>Processo FUJB:</label>
-        <input id="filtroProcesso" />
-        <a href="#"><img src="../assets/filter-icon.png"/></a>
+        <input v-model="processo" />
+        <a @click="filtrarProcesso(processo)"><img src="../assets/filter-icon.png"/></a>
     </div>
     <table v-if="termos.length > 0">
         <thead>
@@ -79,7 +79,7 @@
             return{
               Tipos: Tipos,
               Status: Status,
-              filtroHabilitado: false
+              filtroHabilitado: false,
             }
         }, 
         computed: {
@@ -97,6 +97,9 @@
             },
             visualizarTermo(id){
                 this.$router.push(`/termo/view/${id}`)
+            },
+            async filtrarProcesso(processo){
+                await this.loadTermos(processo)
             },
             async encaminha(id){
                 if(confirm("Deseja mesmo ENCAMINHAR este termo de refência!")){

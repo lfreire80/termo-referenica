@@ -10,8 +10,11 @@ const URL_PROCESSO = 'http://localhost:49894/api/processo'
 axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
 
-const loadTermos = async ({commit}) => {
-    const termos = (await axios.get(URL_TERMO)).data.data
+const loadTermos = async ({commit}, payload) => {
+    let termos = (await axios.get(URL_TERMO)).data.data
+    if(payload){
+        termos = termos.filter(termo => termo.processo == payload)
+    }
     commit('UPDATE_TERMOS', termos.sort((a,b) => a.numero - b.numero))
     
 }
