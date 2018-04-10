@@ -3,14 +3,25 @@
     <div class="content-box-header">
         <h1>Listagem dos Termos de Referência 
             <button 
+                @click="filtroHabilitado=!filtroHabilitado"
+                class="btn-sm btn btn-warning btn-novo" 
+                    >Filtros
+            </button>
+            <button 
                 @click="$router.push(`/termo/new`)"
                 class="btn-sm btn btn-primary btn-novo" 
                     >Criar Novo Termo de Referêcia
             </button>
         </h1>
+      
     </div>
     
     <div class="content-box-inner">
+    <div class="filtro" v-if="filtroHabilitado">
+        <label>Processo FUJB:</label>
+        <input id="filtroProcesso" />
+        <a href="#"><img src="../assets/filter-icon.png"/></a>
+    </div>
     <table v-if="termos.length > 0">
         <thead>
         <tr>
@@ -67,7 +78,8 @@
         data(){
             return{
               Tipos: Tipos,
-              Status: Status
+              Status: Status,
+              filtroHabilitado: false
             }
         }, 
         computed: {
@@ -124,6 +136,16 @@
 </script>
 
 <style scoped>
+
+    .filtro{
+         font-size: 11px; 
+    }
+
+    .filtro img{
+        width:25px;
+        height:25px;
+    }
+
     table{
         width:100%;
     }
@@ -146,7 +168,9 @@
     .btn-novo{
         float:right;
         font-size:10px;
-        cursor:pointer
+        cursor:pointer;
+        margin-left:10px
     }
+
 </style>
 
