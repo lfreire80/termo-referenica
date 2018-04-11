@@ -49,6 +49,7 @@ const saveTermo = async ({state}) => {
     console.log(termo.revisoes)
     let response = ''
     if(!termo.numero){
+        termo.status = 1 // novo
         response = await axios.post(URL_TERMO, termo)
     } else {
         response = await axios.put(URL_TERMO + `/${termo.numero}`, termo)
