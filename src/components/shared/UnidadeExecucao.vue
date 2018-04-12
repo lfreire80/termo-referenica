@@ -22,11 +22,11 @@
                             <br/>CEP: {{ termo.documento.unidadeExecucao.cep }}</label><br />
                     </td>
                     <td>
-                        <label>{{termo.documento.unidadeExecucao.tecUnidade}}/UFRJ</label><br />
-                        <label>{{termo.documento.unidadeExecucao.tecDepartamento}}</label><br />
-                        <label>Telefone: {{termo.documento.unidadeExecucao.tecTelefone}}</label><br />
-                        <label>E-mail: {{termo.documento.unidadeExecucao.tecEmail}}</label><br />
-                        <label>Endereço completo: {{termo.documento.unidadeExecucao.tecEndereco}}</label><br />
+                        <input v-model="termo.documento.unidadeExecucao.tecUnidade" type="text" placeholder="Sigla da Unidade"/><br />
+                        <input v-model="termo.documento.unidadeExecucao.tecDepartamento" type="text" placeholder="Departamento"/><br />
+                        <input v-model="termo.documento.unidadeExecucao.tecTelefone" type="text" placeholder="Telefone"/><br />
+                        <input v-model="termo.documento.unidadeExecucao.tecEmail" type="text" placeholder="Email"/><br />
+                        <textarea v-model="termo.documento.unidadeExecucao.tecEndereco" placeholder="Endereço completo"></textarea><br />
                     </td>
                 </tr>
             </table>
@@ -55,6 +55,17 @@
         margin-bottom: 3px;
     }
 
+    input{
+        width:98%;
+        margin: 3px 45px 3px 3px;
+    }
+
+    textarea{
+        height:60px;
+        width:98%;
+        margin: 3px 15px 3px 3px;
+    }
+
     .box{
         margin: 1px;
         padding: 1px;
@@ -64,4 +75,6 @@
         border: 1px solid black;
         padding: 2px;
     }
+
+    
 </style>

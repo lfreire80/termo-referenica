@@ -18,7 +18,7 @@
          <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">PROCESSO FUJB:</label>
             <div class="col-5">
-                <input class="form-control" type="text" id="processo" v-model="termo.processo" :disabled="action == 'view'">
+                <input class="form-control" type="text" id="processo" v-model="termo.processo" :disabled="action == 'view'" @blur="preencheUnidadeDeExecucao(termo.processo)">
             </div>
         </div>
         <div class="form-group row">
@@ -158,8 +158,23 @@
             },
             validaProcesso(){
                 // Verifica se usuario corrente tem autorização para emissão de termo para este processo...
-                console.log(this.termo);
-                return this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.toString().trim()).length > 0
+                return (this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.toString().trim()).length > 0)
+            },
+            preencheUnidadeDeExecucao(){
+                let dadosProcesso = this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.toString().trim())[0]
+                if(dadosProcesso){
+                    console.log(dadosProcesso)
+                    this.termo.documento.unidadeExecucao.gerencia = dadosProcesso.sigla_secao
+                    this.termo.documento.unidadeExecucao.tel = dadosProcesso.tel
+                    this.termo.documento.unidadeExecucao.email = dadosProcesso.sigla_secao + "@fujb.ufrj.br"
+                } else {
+                    this.termo.documento.unidadeExecucao.gerencia = ""
+                    this.termo.documento.unidadeExecucao.tel = ""
+                    this.termo.documento.unidadeExecucao.email = ""
+                    if(this.termo.processo != ""){
+                        alert('Você não possui autorização para este Processo FUJB')
+                    }
+                }
             },
             addComentario(e){
                 this.tipoComentario = e;
