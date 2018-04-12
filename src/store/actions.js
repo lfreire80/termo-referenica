@@ -24,6 +24,7 @@ const updateTermo = ({commit}, payload) => {
 }
 
 const updateUsuario = async ({commit}) => {
+    console.log(USER)
     const processos = (await axios.get(URL_PROCESSO)).data
     const payload = { idUsuario : USER.id, perfil: USER.perfil, processos : processos }
     commit('UPDATE_USUARIO', payload)

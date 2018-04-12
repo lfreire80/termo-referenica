@@ -8,9 +8,15 @@ function getToken(){
 
 function getUser(){
     const cookies = getAuthTokenFromCookie()
+    
+    const perfil = cookies.filter(name => name.split('=')[0].trim() == "perfil")[0].split("=")[1]
+    const user = cookies.filter(name => name.split('=')[0].trim() == "user")[0].split("=")[1]
+    
+
+    console.log(perfil, user)
     return {
-        id: cookies[1].split('=')[1],
-        perfil : cookies[2].split('=')[1]
+        id: user,
+        perfil : perfil
     }
 }
 

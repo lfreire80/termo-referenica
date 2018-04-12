@@ -34,7 +34,7 @@
             :show="showComentarios"
             :bgColor="'#fffcf4'"
             :bdColor="'#ce9e1c'">
-                <div class="comentario-header">{{ comentario.revisor }} - {{ comentario.data}}</div>
+                <div class="comentario-header">{{ comentario.data}}</div>
                 <p>{{comentario.comentario }}</p>
         </app-tooltip>
         <textarea-autosize 

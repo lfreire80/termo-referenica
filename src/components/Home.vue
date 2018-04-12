@@ -12,7 +12,7 @@
 
 <script>
 import { AUTH_TOKEN } from '../auth'
- import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
     mounted(){
         if (AUTH_TOKEN == 'Bearer undefined'){

@@ -63,7 +63,7 @@
                 v-else-if="termo.tipo === 4">
         </app-termo-referencia-importacao>
 
-        <div class=text-right >
+        <div class=text-right class="rodapeBotoes" >
             <button type="button" class="btn btn-sm btn-primary" @click="save()" :disabled="(action == 'view')">Salvar</button>
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
@@ -183,16 +183,18 @@
                 $('#myModal').modal()
             },
             saveComentario(){
-                const revisao = {
-                    revisor: 'Leoanrdo Freire',
-                    data: "08/12/2017",
-                    documento: {}
-                }
-                revisao.documento[this.tipoComentario] = this.comentario
-                this.termo.revisoes.push(revisao)
+                if(this.comentario.trim().length > 0){
+                    const revisao = {
+                        revisor: '',
+                        data: new Date().toLocaleString(),
+                        documento: {}
+                    }
+                    revisao.documento[this.tipoComentario] = this.comentario
+                    this.termo.revisoes.push(revisao)
 
-                this.updateTermo(this.termo)
-                $('#myModal').modal('hide')
+                    this.updateTermo(this.termo)
+                    $('#myModal').modal('hide')
+                }
 
             },
             changeTipo(e){
@@ -236,8 +238,11 @@
     }
 
     @media print{
-        input {
-            border: none;
+        input, select {
         }
+        .rodapeBotoes{
+            display: none;
+        }
+
     }
 </style>
