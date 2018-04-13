@@ -238,8 +238,6 @@
     }
 
     @media print{
-        input, select {
-        }
         .rodapeBotoes{
             display: none;
         }

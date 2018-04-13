@@ -209,12 +209,4 @@
 
     }
 </script>
-<style scoped> 
 
-
-@media print{
-    textarea{
-        border: none;
-    }
-}
-</style>

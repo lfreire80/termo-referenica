@@ -1,7 +1,7 @@
 <template>
    <div>
-       <div class="form-group">
-          <app-documento-field
+        <div class="form-group">
+            <app-documento-field
                 titulo = "1. OBJETO"
                 :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showObjeto"
@@ -11,9 +11,9 @@
                 @addComentario="addComentario('objeto')"
                 @updated="termo.documento.objeto = $event; $store.dispatch('updateTermo', termo)"
                 >
-          </app-documento-field>
+            </app-documento-field>
 
-          <app-documento-field
+            <app-documento-field
                 titulo = "2. JUSTIFICATIVA DA CONTRATAÇÃO"
                 :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showJustificativa"
@@ -23,7 +23,7 @@
                 @addComentario="addComentario('justificativa')"
                 @updated="termo.documento.justificativa = $event; $store.dispatch('updateTermo', termo)"
                 >
-          </app-documento-field>
+            </app-documento-field>
 
             <app-documento-field
                 titulo = "3. CRITÉRIO DE AVALIAÇÃO / MÉTODO DE SELEÇÃO"
@@ -35,11 +35,20 @@
                 @addComentario="addComentario('criterio')"
                 @updated="termo.documento.criterio = $event; $store.dispatch('updateTermo', termo)"
                 >
-          </app-documento-field>
+            </app-documento-field>
 
-          <!-- 4. ESPECIFICAÇÕES TÉCNICAS -->
-
-           <app-documento-field
+            <app-documento-field
+                titulo = "4. ESPECIFICAÇÕES TÉCNICAS"
+                :somenteLeitura = "somenteLeitura"
+                :showTooltip = "tooltips.showEspecificacao"
+                :tooltipMsg = "termo.modelo.especificacao"
+                v-model = "termo.documento.especificacao"
+                :comentarios = "getComentarios('especificacao')"
+                @addComentario="addComentario('especificacao')"
+                @updated="termo.documento.especificacao = $event; $store.dispatch('updateTermo', termo)"
+                >
+            </app-documento-field>
+            <app-documento-field
                  titulo = "5. PRODUTO"
                  :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showProduto"
@@ -75,10 +84,30 @@
                  >
             </app-documento-field>
 
-            <!-- 8. ESTIMATIVA DE CUSTO DA CONTRATAÇÃO -->
+            <app-documento-field
+                 titulo = "8. ESTIMATIVA DE CUSTO DA CONTRATAÇÃO"
+                 :somenteLeitura = "somenteLeitura"
+                 :showTooltip = "tooltips.showEstimativaCusto"
+                 :tooltipMsg = "termo.modelo.estimativaCusto"
+                 v-model = "termo.documento.estimativaCusto"
+                 :comentarios = "getComentarios('estimativaCusto')"
+                 @addComentario="addComentario('estimativaCusto')"
+                 @updated="termo.documento.estimativaCusto = $event; $store.dispatch('updateTermo', termo)"
+                 >
+            </app-documento-field>
 
-            <!-- 9. CONDIÇÕESE PRAZOS DE PAGAMENTO -->
-                     
+            <app-documento-field
+                 titulo = "9. CONDIÇÕESE PRAZOS DE PAGAMENTO"
+                 :somenteLeitura = "somenteLeitura"
+                 :showTooltip = "tooltips.showCondicoes"
+                 :tooltipMsg = "termo.modelo.condicoes"
+                 v-model = "termo.documento.condicoes"
+                 :comentarios = "getComentarios('condicoes')"
+                 @addComentario="addComentario('condicoes')"
+                 @updated="termo.documento.condicoes = $event; $store.dispatch('updateTermo', termo)"
+                 >
+            </app-documento-field>
+
             <app-documento-field
                  titulo = "10. OBRIGAÇÕES DO(A) PROFISSIONAL(ES) A SER CONTRATADO"
                  :somenteLeitura = "somenteLeitura"
@@ -127,6 +156,8 @@
                     showProduto: false,
                     showApresentacao: false,
                     showPrazo: false,
+                    showEstimativaCusto: false,
+                    showCondicoes: false,
                     showObrigacoes: false,
                     showFonte: false
 
@@ -164,12 +195,4 @@
 
     }
 </script>
-<style scoped> 
 
-
-@media print{
-    textarea{
-        border: none;
-    }
-}
-</style>

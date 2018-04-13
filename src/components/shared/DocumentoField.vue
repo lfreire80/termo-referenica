@@ -37,7 +37,7 @@
                 <div class="comentario-header">{{ comentario.data}}</div>
                 <p>{{comentario.comentario }}</p>
         </app-tooltip>
-        <textarea-autosize 
+        <textarea-autosize
             :disabled="somenteLeitura"
             class="form-control" 
             v-model = "internalValue"
@@ -109,6 +109,8 @@
         width:100%;
         padding: 5px;
         margin-bottom: 5px;
+        font-size:12px;
+
     }
     .my-btn{
         margin-top: -2px;
@@ -135,13 +137,16 @@
 
     @media print{
         textarea{
-            border: none;
+           font-size:12px;
+           border:none;
+           text-align:justify;
+           height:autosize;
         }
         button{
             display: none;
         }
         label{
-             background-color: #ccc;
+             background-color: #999;
         }
     }
 </style>
