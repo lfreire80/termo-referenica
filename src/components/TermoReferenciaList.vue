@@ -32,7 +32,7 @@
             <th>Data</th>
             <th>Tipo</th>
             <th>Status</th>
-            <th colspan="7">Ações</th>
+            <th colspan="7" class="center-header">Ações</th>
         </tr>
         </thead>
         <tbody>
