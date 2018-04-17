@@ -32,7 +32,7 @@
             <th>Data</th>
             <th>Tipo</th>
             <th>Status</th>
-            <th colspan="6">Ações</th>
+            <th colspan="7">Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -58,6 +58,9 @@
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
                 <a href="#" @click="retorna(termo.numero)" v-show="termo.status == 2 || termo.status == 4"><img alt="Encaminha termo de referência para revisão" title="Encaminha termo de referência para revisão" src="../assets/thumbsdown.svg" /></a>
+            </td>
+            <td :class="{ grid_color : key % 2 != 0}">
+                <a href="#" @click="baixar(termo.numero)" v-show="termo.status == 4"><img alt="Baixar PDF" title="Baixar PDF" src="../assets/file-pdf.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
                 <a href="#" @click="del(termo.numero)"><img alt="Excluir termo de referência" title="Excluir termo de referência" src="../assets/trashcan.svg" /></a>
@@ -115,7 +118,7 @@
             },
             async retorna(id){
                 if(confirm("Deseja mesmo RETORNAR este termo de refência para revisão!")){
-                    await this.encaminharParaRevisaoTermo(id)
+                    await this.encaminhaParaRevisaoTermo(id)
                     await this.loadTermos()
                 }
             },
@@ -125,12 +128,16 @@
                     await this.loadTermos()
                 }
             },
+            async baixar(id){
+                await this.baixaTermo(id);
+            },
             ...mapActions([
                 'loadTermos',
                 'deleteTermo',
                 'encaminhaTermo',
                 'aprovaTermo',
-                'encaminharParaRevisaoTermo'
+                'encaminhaParaRevisaoTermo',
+                'baixaTermo'
             ]),
            
         }

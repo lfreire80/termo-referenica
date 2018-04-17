@@ -70,8 +70,12 @@ const encaminhaTermo = async({}, id) => {
     await axios.post(URL_TERMO + `/encaminhar/${id}`)
 }
 
-const encaminharParaRevisaoTermo = async({}, id) => {
+const encaminhaParaRevisaoTermo = async({}, id) => {
     await axios.post(URL_TERMO + `/pararevisao/${id}`)
+}
+
+const baixaTermo = async({}, id) => {
+    window.open(URL_TERMO + `/print/${id}`)
 }
 
 export default{
@@ -85,5 +89,6 @@ export default{
     updateUsuario,
     aprovaTermo,
     encaminhaTermo,
-    encaminharParaRevisaoTermo
+    encaminhaParaRevisaoTermo,
+    baixaTermo
 }
