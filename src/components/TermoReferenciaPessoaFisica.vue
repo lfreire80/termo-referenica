@@ -97,7 +97,7 @@
             </app-documento-field>
 
             <app-documento-field
-                 titulo = "9. CONDIÇÕESE PRAZOS DE PAGAMENTO"
+                 titulo = "9. CONDIÇÕES E PRAZOS DE PAGAMENTO"
                  :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showCondicoes"
                  :tooltipMsg = "termo.modelo.condicoes"
@@ -109,7 +109,7 @@
             </app-documento-field>
 
             <app-documento-field
-                 titulo = "10. OBRIGAÇÕES DO(A) PROFISSIONAL(ES) A SER CONTRATADO"
+                 titulo = "10. OBRIGAÇÕES DO(A) PROFISSIONAL A SER CONTRATADO"
                  :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showObrigacoes"
                  :tooltipMsg = "termo.modelo.obrigacoes"
