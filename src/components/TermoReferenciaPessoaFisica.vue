@@ -122,7 +122,6 @@
 
             <app-unidade-execucao titulo="11. UNIDADE DE EXECUÇÃO TÉCNICA E FINANCEIRA:"/>
 
-
             <div class="label">
                 <span>12. FONTE DE RECURSO</span>
             </div>
@@ -152,7 +151,6 @@
                     showCondicoes: false,
                     showObrigacoes: false,
                     showFonte: false
-
                 },
             }
         },
@@ -201,6 +199,5 @@
         padding: 5px;
         margin-bottom: 5px;
         font-size:12px;
-
     }
 </style>

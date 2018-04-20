@@ -134,7 +134,6 @@
                     this.loadTermo(this.id)
                 break;
             }
-            
         },
         destroyed(){
             this.clearTermo()
@@ -153,8 +152,6 @@
                 } else {
                     alert('Você não possui autorização para este Processo FUJB')
                 }
-
-                
             },
             validaProcesso(){
                 // Verifica se usuario corrente tem autorização para emissão de termo para este processo...
@@ -201,7 +198,6 @@
                     this.updateTermo(this.termo)
                     $('#myModal').modal('hide')
                 }
-
             },
             changeTipo(e){
                 this.selectedTipo = e.target.value
@@ -247,6 +243,5 @@
         .rodapeBotoes{
             display: none;
         }
-
     }
 </style>
