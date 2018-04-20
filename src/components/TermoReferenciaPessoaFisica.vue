@@ -122,19 +122,11 @@
 
             <app-unidade-execucao titulo="11. UNIDADE DE EXECUÇÃO TÉCNICA E FINANCEIRA:"/>
 
-            <app-documento-field
-                 titulo = "12. FONTE DE RECURSOS"
-                 :somenteLeitura = "somenteLeitura"
-                 :showTooltip = "tooltips.showFonte"
-                 :tooltipMsg = "termo.modelo.fonte"
-                 v-model = "termo.documento.fonte"
-                 :comentarios = "getComentarios('fonte')"
-                 @addComentario="addComentario('fonte')"
-                 @updated="termo.documento.fonte = $event; $store.dispatch('updateTermo', termo)"
-                 >
-            </app-documento-field>
 
-
+            <div class="label">
+                <span>12. FONTE DE RECURSO</span>
+            </div>
+            <textarea class="form-control" v-model="termo.documento.fonte"></textarea>
        </div>
    </div>
 </template>
@@ -195,4 +187,20 @@
 
     }
 </script>
+<style scoped>
+  .label{
+        background-color: #ccc;
+        display: block;
+        font-weight: bold;
+        padding: 5px;
+        height: 30px;
+        margin-bottom: 3px;
+    }
+    textarea{
+        width:100%;
+        padding: 5px;
+        margin-bottom: 5px;
+        font-size:12px;
 
+    }
+</style>

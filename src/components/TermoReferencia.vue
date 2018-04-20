@@ -18,7 +18,7 @@
          <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">PROCESSO FUJB:</label>
             <div class="col-5">
-                <input class="form-control" type="text" id="processo" v-model="termo.processo" :disabled="action == 'view'" @blur="preencheUnidadeDeExecucao(termo.processo)">
+                <input class="form-control" type="text" id="processo" v-model="termo.processo" :disabled="action == 'view'" @blur="preencheDadosProcesso(termo.processo)">
             </div>
         </div>
         <div class="form-group row">
@@ -63,7 +63,7 @@
                 v-else-if="termo.tipo === 4">
         </app-termo-referencia-importacao>
 
-        <div class=text-right class="rodapeBotoes" >
+        <div class="text-right rodapeBotoes" >
             <button type="button" class="btn btn-sm btn-primary" @click="save()" :disabled="(action == 'view')">Salvar</button>
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
@@ -160,14 +160,20 @@
                 // Verifica se usuario corrente tem autorização para emissão de termo para este processo...
                 return (this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.toString().trim()).length > 0)
             },
-            preencheUnidadeDeExecucao(){
+            preencheDadosProcesso(){
                 let dadosProcesso = this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.toString().trim())[0]
                 if(dadosProcesso){
-                    console.log(dadosProcesso)
+                    this.termo.projeto = dadosProcesso.titulo.split('\"').join(''); //remove \" indevidas
+                    this.termo.instituicaoFinanceira = dadosProcesso.financiador
                     this.termo.documento.unidadeExecucao.gerencia = dadosProcesso.sigla_secao
                     this.termo.documento.unidadeExecucao.tel = dadosProcesso.tel
                     this.termo.documento.unidadeExecucao.email = dadosProcesso.sigla_secao + "@fujb.ufrj.br"
+                    this.termo.documento.fonte = `Os recursos financeiros necessários aos pagamentos mencionados neste TR serão oriundos do Projeto ${dadosProcesso.titulo}, processo FUJB: ${this.termo.processo}, financiados pela ${dadosProcesso.financiador}.`
+                    
+                    console.log(this.termo.documento)
                 } else {
+                    this.termo.projeto = ""
+                    this.termo.instituicaoFinanceira = ""
                     this.termo.documento.unidadeExecucao.gerencia = ""
                     this.termo.documento.unidadeExecucao.tel = ""
                     this.termo.documento.unidadeExecucao.email = ""

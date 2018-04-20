@@ -75,7 +75,6 @@
         },
         methods:{
             updated(e){
-                console.log('emit')
                 this.$emit('updated', e.target.value)
                 
             },

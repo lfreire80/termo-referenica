@@ -9,6 +9,7 @@ import { store } from './store/store'
 
 Vue.use(VueRouter)
 Vue.use(VueTextareaAutosize)
+Vue.config.devtools = true
 
 const router = new VueRouter({
   routes,
