@@ -68,27 +68,42 @@
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
 
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal fade" id="myModalProfissional" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">Cadastro do(a) Profissional(s)</div>
+                    <div class="modal-body">
+                        <app-cadastro-profissional></app-cadastro-profissional>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-sm btn-primary">Gravar</button>
+                    </div>
+                </div>
+            </div>
+       </div> 
+    
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Digitar comentário</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <textarea-autosize 
-                        id="comentarioForm"
-                        class="form-control comentarioForm" 
-                        v-model = "comentario">
-                        <!-- @change.native="updated($event)" > -->
-                    </textarea-autosize>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-sm btn-primary" @click="saveComentario()">Gravar</button>
-                </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Digitar comentário</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea-autosize 
+                            id="comentarioForm"
+                            class="form-control comentarioForm" 
+                            v-model = "comentario">
+                            <!-- @change.native="updated($event)" > -->
+                        </textarea-autosize>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-sm btn-primary" @click="saveComentario()">Gravar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,6 +115,7 @@
     import TermoReferenciaPessoaFisica from './TermoReferenciaPessoaFisica.vue'
     import TermoReferenciaPessoaJuridica from './TermoReferenciaPessoaJuridica.vue'
     import TermoReferenciaBolsa from './TermoReferenciaBolsa.vue'
+    import CadastroProfissional from './shared/CadastroProfissional.vue'
     import TermoReferenciaImportacao from './TermoReferenciaImportacao.vue'
     import { Tipos } from '../models/Tipos.js'
     import { mapState, mapActions } from 'vuex'
@@ -122,6 +138,7 @@
             ])
         },
         async mounted(){
+             $('#myModalProfissional').modal()
             this.termos=[];
             switch(this.action){
                 case 'new':
@@ -215,7 +232,8 @@
             appTermoReferenciaPessoaFisica : TermoReferenciaPessoaFisica,
             appTermoReferenciaPessoaJuridica : TermoReferenciaPessoaJuridica,
             appTermoReferenciaBolsa : TermoReferenciaBolsa,
-            appTermoReferenciaImportacao : TermoReferenciaImportacao
+            appTermoReferenciaImportacao : TermoReferenciaImportacao,
+            appCadastroProfissional : CadastroProfissional,
         }
     }
 </script>
