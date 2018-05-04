@@ -16,7 +16,6 @@ const loadTermos = async ({commit}, payload) => {
         termos = termos.filter(termo => termo.processo == payload)
     }
     commit('UPDATE_TERMOS', termos.sort((a,b) => a.numero - b.numero))
-    
 }
 
 const updateTermo = ({commit}, payload) => {
@@ -24,7 +23,6 @@ const updateTermo = ({commit}, payload) => {
 }
 
 const updateUsuario = async ({commit}) => {
-    console.log(USER)
     const processos = (await axios.get(URL_PROCESSO)).data
     const payload = { idUsuario : USER.id, perfil: USER.perfil, processos : processos }
     commit('UPDATE_USUARIO', payload)
@@ -47,7 +45,6 @@ const newTermo = async ({commit}, id) => {
 
 const saveTermo = async ({state}) => {
     const termo = state.termo
-    console.log(termo.revisoes)
     let response = ''
     if(!termo.numero){
         termo.status = 1 // novo

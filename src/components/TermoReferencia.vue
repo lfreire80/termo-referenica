@@ -77,7 +77,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-sm btn-primary">Gravar</button>
                     </div>
                 </div>
             </div>
@@ -138,19 +137,21 @@
             ])
         },
         async mounted(){
-             $('#myModalProfissional').modal()
+            
             this.termos=[];
             switch(this.action){
                 case 'new':
-                    this.newTermo(this.selectedTipo)
+                    await this.newTermo(this.selectedTipo)
+                    $('#myModalProfissional').modal()
                 break;
                 case 'edit':
-                    this.loadTermo(this.id)
+                    await this.loadTermo(this.id)
                 break;
                 case 'view':
-                    this.loadTermo(this.id)
+                    await this.loadTermo(this.id)
                 break;
             }
+            
         },
         destroyed(){
             this.clearTermo()
