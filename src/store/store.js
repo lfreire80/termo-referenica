@@ -7,7 +7,11 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        termo: {},
+        termo: {
+            documento: {
+                profissionais: []
+            }
+        },
         termos: [],
         usuario: {
             processos: []

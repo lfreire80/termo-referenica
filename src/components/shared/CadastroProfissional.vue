@@ -1,11 +1,17 @@
 <template>
     <div class="row">
         <div class="col-3">
-            <div class="row">Profissionais</div>
             <div class="row">
-                <ul v-if="termo.documento">
-                    <li v-for="(valor, index) in termo.documento.profissionais">Profissional {{index+1}}</li>
-                </ul>
+                <table class="table" v-if="termo.documento.profissionais.length > 0">
+                    <tr>
+                        <th>Profissionais</th>
+                    </tr>
+                    <tr v-for="(valor, index) in termo.documento.profissionais">
+                        <td @click="selecionaProfissional(index)" >Profissional {{index+1}}</td>
+                        <td @click="copiarProfissional(index)">O</td>
+                        <td @click="removeProfissional(index)">X</td>
+                    </tr>
+                </table>
             </div> 
         </div>
         <div class="col-9">
@@ -27,9 +33,6 @@
                     <input type="text" class="col-lg-12 form-control" id="prazo" v-model="profissional.prazo" />
                 </div>
             </div>
-            <!--<div class="row">
-                <div class="col-lg-12">Estimativa</div>
-            </div>-->
             <div class="row">
                 <div class="col-lg-4">
                     <div class="form-group">   
@@ -147,13 +150,37 @@ export default {
     methods: {
         addParcela(){
             this.profissional.parcelas.push(Object.assign({}, this.parcela))
+            // Limpa as propriedades da parcela //
+            this.parcela = Object.getOwnPropertyNames(this.parcela).reduce((a, c) => {
+                a[c] = ''
+                return a
+            },{})
         },
         remover(parcela){
             this.profissional.parcelas.splice(this.profissional.parcelas.indexOf(parcela),1)
         },
         addProfissional(){
-            this.termo.documento.profissionais.push(this.profissional)
+            this.termo.documento.profissionais.push(this.clonarProfissional(this.profissional))
+        },
+        removeProfissional(index){
+            this.termo.documento.profissionais.splice(index,1)
+        },
+        selecionaProfissional(index){
+            this.profissional = this.termo.documento.profissionais[index]
+            this.profissional.parcelas.sort()
+
+        },
+        copiarProfissional(index){
+            this.termo.documento.profissionais.push(this.clonarProfissional(this.termo.documento.profissionais[index]))
+        },
+        clonarProfissional(profissional){
+            var parcelas = profissional.parcelas.map(x => Object.assign({}, x))
+            var profissional = Object.assign({}, profissional);
+            profissional.parcelas = parcelas
+            console.log(profissional.parcela)
+            return profissional
         }
+        
     },
     computed: {
             ...mapState([
@@ -165,5 +192,4 @@ export default {
 </script>
 
 <style>
-
 </style>
