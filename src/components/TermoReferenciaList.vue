@@ -8,7 +8,7 @@
                     >Filtros
             </button>
             <button 
-                @click="$router.push(`/termo/new`)"
+                @click="$router.push(`/new`)"
                 class="btn-sm btn btn-primary btn-novo" 
                     >Criar Novo Termo de Referêcia
             </button>
@@ -96,10 +96,10 @@
         },    
         methods: {
             editarTermo(id){
-                this.$router.push(`/termo/edit/${id}`)
+                this.$router.push(`/edit/${id}`)
             },
             visualizarTermo(id){
-                this.$router.push(`/termo/view/${id}`)
+                this.$router.push(`/view/${id}`)
             },
             async filtrarProcesso(processo){
                 await this.loadTermos(processo)

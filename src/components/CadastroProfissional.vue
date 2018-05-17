@@ -7,9 +7,11 @@
                         <ul class="lista_profissionais">
                             <li><strong>Profissionais</strong></li>
                             <li v-for="(valor, index) in termo.documento.profissionais">
-                                <span @click="selecionaProfissional(index)">Profissional {{index+1}}  </span> 
-                                <span @click="copiarProfissional(index)">O</span> 
-                                <a href="#" @click="removeProfissional(index)"><img alt="Remover profissional" title="Remover profissional" src="../../assets/trashcan.svg" /></a>
+                                <span @click="selecionaProfissional(index)">Profissional {{index+1}}</span> 
+                                <span style="text-align:right">
+                                    <a href="#" @click="copiarProfissional(index)"><img alt="Copiar este profissional" title="Copiar este profissional" src="../assets/repo-clone.svg" /></a>
+                                    <a href="#" @click="removeProfissional(index)"><img alt="Remover profissional" title="Remover profissional" src="../assets/trashcan.svg" /></a>
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -214,7 +216,7 @@ export default {
     margin:0;
 }
 img{
-    width:25px;
-    height:25px;
+    width:15px;
+    height:15px;
 }
 </style>

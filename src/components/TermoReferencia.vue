@@ -114,7 +114,7 @@
     import TermoReferenciaPessoaFisica from './TermoReferenciaPessoaFisica.vue'
     import TermoReferenciaPessoaJuridica from './TermoReferenciaPessoaJuridica.vue'
     import TermoReferenciaBolsa from './TermoReferenciaBolsa.vue'
-    import CadastroProfissional from './shared/CadastroProfissional.vue'
+    import CadastroProfissional from './CadastroProfissional.vue'
     import TermoReferenciaImportacao from './TermoReferenciaImportacao.vue'
     import { Tipos } from '../models/Tipos.js'
     import { mapState, mapActions } from 'vuex'
