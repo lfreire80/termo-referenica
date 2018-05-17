@@ -1,5 +1,8 @@
 <template>
    <div>
+        <div style="padding:20px; font-size:10px;">
+            <center><button class="btn btn-primary btn-sm" style="cursor:ponter" @click="addProfissional()">Cadastrar Profissionais</button></center>
+        </div>
         <div class="form-group">
             <app-documento-field
                 titulo = "1. OBJETO"
@@ -176,6 +179,9 @@
             },
             addComentario(campo){
                 this.$emit("addComentario", campo);
+            },
+            addProfissional(){
+                this.$emit('addProfissional')
             }
         },
         components:{

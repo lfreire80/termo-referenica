@@ -1,29 +1,31 @@
 <template>
     <div class="row">
-        <div class="col-3">
-            <div class="box">
+        <div class="col-4">
+            <div class="box"  style="height:100%; margin-bottom:5px;">
                 <div class="row">
-                    <div class="col-12">
-                        <ul class="lista_profissionais">
-                            <li><strong>Profissionais</strong></li>
-                            <li v-for="(valor, index) in termo.documento.profissionais">
-                                <span @click="selecionaProfissional(index)">Profissional {{index+1}}</span> 
-                                <span style="text-align:right">
-                                    <a href="#" @click="copiarProfissional(index)"><img alt="Copiar este profissional" title="Copiar este profissional" src="../assets/repo-clone.svg" /></a>
-                                    <a href="#" @click="removeProfissional(index)"><img alt="Remover profissional" title="Remover profissional" src="../assets/trashcan.svg" /></a>
-                                </span>
-                            </li>
-                        </ul>
+                    <div class="col-12" style="text-align:center; margin-bottom:10px">
+                        <button type="button" @click="addProfissional()" class="btn btn-sm btn-primary">Adicionar Profissional</button>
                     </div>
                 </div> 
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table">
+                            <tr v-for="(valor, index) in termo.documento.profissionais" :style="(profissional_selecionado == index) ? 'background-color:#ccc': ''">
+                                <td @click="selecionaProfissional(index)">Profissional - {{index+1}}</td>
+                                <td><a href="#" @click="copiarProfissional(index)"><img alt="Copiar este profissional" title="Copiar este profissional" src="/Portal/termo-referencia/dist/repo-clone.svg" /></a></td>
+                                <td><a href="#" @click="removeProfissional(index)"><img alt="Remover profissional" title="Remover profissional" src="/Portal/termo-referencia//dist/trashcan.svg" /></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-9">
-            <div class="box">
+        <div class="col-8">
+            <div class="box" v-show="termo.documento.profissionais.length > 0">
                 <div class="form-group">   
                     <label for="atividade">Atividade:</label>
                     <div class="input-group">
-                        <input type="text" class="col-lg-12 form-control" id="atividade" v-model="profissional.ativade" />
+                        <input type="text" class="col-lg-12 form-control" id="atividade" v-model="profissional.atividade" />
                     </div>
                 </div>
                 <div class="form-group">   
@@ -64,8 +66,10 @@
                         </div>
                     </div>
                 </div>
+                </div>
+                <div class="box" v-show="termo.documento.profissionais.length > 0">
                 <div class="row">
-                    <div class="col-lg-12">Cadastro de Parcelas</div>
+                    <div class="col-lg-12"><strong>Cadastro de Parcelas</strong></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3">
@@ -84,11 +88,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-3">
                         <div class="form-group">   
                             <label for="inss">Parcela:</label>
                             <div class="input-group">
-                                <input type="text" class="col-lg-12 form-control" id="periodo" v-model="parcela.parcela" />
+                                <input type="text" class="col-lg-12 form-control" id="periodo" v-model="parcela.numeroParcela" />
                             </div>
                         </div>
                     </div>
@@ -96,15 +100,17 @@
                         <div class="form-group">   
                             <label for="inss">Total:</label>
                             <div class="input-group">
-                                <input type="text" class="col-lg-12 form-control" id="periodo" v-model="parcela.total" />
+                                <input type="text" class="col-lg-12 form-control" id="periodo" v-model="parcela.valor" />
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1">
+                </div>
+                <div class="row">
+                    <div class="col-12">
                         <div class="form-group">
                             <label for="inss"></label>
                             <div class="input-group">
-                                <button class="btn btn-sm" @click="addParcela()">+</button>
+                                <button class="btn btn-sm btn-primary" @click="addParcela()">Incluir Parcela</button>
                             </div>
                         </div>
                     </div>
@@ -116,7 +122,7 @@
                                 <th class="col-3">Período</th>
                                 <th class="col-3">Produto</th>
                                 <th class="col-2">Parcela</th>
-                                <th class="col-3">Total</th>
+                                <th class="col-3">Valor</th>
                                 <th class="col-1"></th>
                             </tr>
                         </thead>
@@ -124,20 +130,16 @@
                             <tr v-for="parcela in profissional.parcelas" class="d-flex">
                                 <td class="col-3">{{parcela.periodo}}</td>
                                 <td class="col-3">{{parcela.produto}}</td>
-                                <td class="col-2">{{parcela.parcela}}</td>
-                                <td class="col-3">{{parcela.total}}</td>
-                                <td class="col-1"><button class="btn btn-sm btn-danger" @click="remover(parcela)">X</button></td>
+                                <td class="col-2">{{parcela.parcelaNumero}}</td>
+                                <td class="col-3">{{parcela.valor}}</td>
+                                <td class="col-1"><a href="#" @click="remover(parcela)"><img alt="Remover parcela" title="Remover parcela" src="../assets/trashcan.svg" /></a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <button type="button" @click="addProfissional()" class="btn btn-sm btn-primary">Adicionar</button>
-                    </div>
-                </div>
+               
             </div>
-        </div>
+        </div>     
     </div>
 </template>
 
@@ -150,11 +152,12 @@ export default {
             profissional: {
                 parcelas: []
             },
+            profissional_selecionado: '',
             parcela: {
                 periodo: '',
                 produto: '',
-                parcela: '',
-                total: ''
+                parcelaNumero: '',
+                valor: ''
             }
         }
     },
@@ -171,7 +174,12 @@ export default {
             this.profissional.parcelas.splice(this.profissional.parcelas.indexOf(parcela),1)
         },
         addProfissional(){
-            this.termo.documento.profissionais.push(this.clonarProfissional(this.profissional))
+            var profissional = { 
+                parcelas: []
+            }
+            this.termo.documento.profissionais.push(profissional)
+            this.profissional_selecionado = this.termo.documento.profissionais.length - 1;
+            this.selecionaProfissional(this.termo.documento.profissionais.length - 1)
         },
         removeProfissional(index){
             this.termo.documento.profissionais.splice(index,1)
@@ -179,6 +187,7 @@ export default {
         selecionaProfissional(index){
             this.profissional = this.termo.documento.profissionais[index]
             this.profissional.parcelas.sort()
+            this.profissional_selecionado = index
 
         },
         copiarProfissional(index){
@@ -188,7 +197,6 @@ export default {
             var parcelas = profissional.parcelas.map(x => Object.assign({}, x))
             var profissional = Object.assign({}, profissional);
             profissional.parcelas = parcelas
-            console.log(profissional.parcela)
             return profissional
         }
         
@@ -203,18 +211,30 @@ export default {
 </script>
 
 <style scoped>
+
 .box {
     border: 1px solid #ccc;
     border-radius: 10px;
-    background: #edeeef;
+    background: #fff;
     padding:10px 15px;
+    margin:0 0 10px 0;
     display:block;
 }
+
+button{
+    font-size:10px;
+}
+
 .lista_profissionais{
     list-style-type: none;
     padding:0;
     margin:0;
 }
+
+.lista_profissionais li{
+    padding: 6px 0;
+}
+
 img{
     width:15px;
     height:15px;

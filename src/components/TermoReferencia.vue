@@ -36,6 +36,7 @@
        
         <app-termo-referencia-pessoa-fisica
                 @addComentario="addComentario($event)"
+                @addProfissional="addProfissional()"
                 :termo="termo"
                 :somenteLeitura="(action == 'view')"
                 v-if="termo.tipo === 1">
@@ -70,8 +71,8 @@
 
        <div class="modal fade" id="myModalProfissional" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">Cadastro do(a) Profissional(s)</div>
+                <div class="modal-content modal-profissioal">
+                    <div class="modal-header"><h5>Cadastro do Profissional</h5></div>
                     <div class="modal-body">
                         <app-cadastro-profissional></app-cadastro-profissional>
                     </div>
@@ -142,7 +143,6 @@
             switch(this.action){
                 case 'new':
                     await this.newTermo(this.selectedTipo)
-                    $('#myModalProfissional').modal()
                 break;
                 case 'edit':
                     await this.loadTermo(this.id)
@@ -221,6 +221,9 @@
                 this.selectedTipo = e.target.value
                 this.newTermo(this.selectedTipo)
             },
+            addProfissional(){
+                $('#myModalProfissional').modal()
+            },
             ...mapActions([
                 'loadTermo',
                 'clearTermo',
@@ -256,6 +259,10 @@
     .comentarioForm{
         height: 50px;
         font-size:10px;
+    }
+
+    .modal-profissioal{
+       
     }
 
     @media print{
