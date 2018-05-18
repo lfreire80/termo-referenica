@@ -25,19 +25,19 @@
                 <div class="form-group">   
                     <label for="atividade">Atividade:</label>
                     <div class="input-group">
-                        <input type="text" class="col-lg-12 form-control" id="atividade" v-model="profissional.atividade" />
+                        <textarea class="col-lg-12 form-control" id="atividade" v-model="profissional.atividade"></textarea>
                     </div>
                 </div>
                 <div class="form-group">   
                     <label for="produto">Produto:</label>
                     <div class="input-group">
-                        <input type="text" class="col-lg-12 form-control" id="produto" v-model="profissional.produto" />
+                        <textarea type="text" class="col-lg-12 form-control" id="produto" v-model="profissional.produto"></textarea>
                     </div>
                 </div>
                 <div class="form-group">   
                     <label for="produto">Prazo:</label>
                     <div class="input-group">
-                        <input type="text" class="col-lg-12 form-control" id="prazo" v-model="profissional.prazo" />
+                        <textarea type="text" class="col-lg-12 form-control" id="prazo" v-model="profissional.prazo" ></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -132,7 +132,7 @@
                                 <td class="col-3">{{parcela.produto}}</td>
                                 <td class="col-2">{{parcela.parcelaNumero}}</td>
                                 <td class="col-3">{{parcela.valor}}</td>
-                                <td class="col-1"><a href="#" @click="remover(parcela)"><img alt="Remover parcela" title="Remover parcela" src="../assets/trashcan.svg" /></a></td>
+                                <td class="col-1"><a href="#" @click="remover(parcela)"><img alt="Remover parcela" title="Remover parcela" src="/Portal/termo-referencia/dist/trashcan.svg" /></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -161,6 +161,11 @@ export default {
             }
         }
     },
+    mounted(){
+        console.log(this.termo.documento.profissionais)
+        //if(this.termo.documento.profissionais)
+          //  this.selecionaProfissional(0)
+    },
     methods: {
         addParcela(){
             this.profissional.parcelas.push(Object.assign({}, this.parcela))
@@ -186,8 +191,10 @@ export default {
         },
         selecionaProfissional(index){
             this.profissional = this.termo.documento.profissionais[index]
-            this.profissional.parcelas.sort()
             this.profissional_selecionado = index
+            if(this.profissional.parcelas)
+                this.profissional.parcelas.sort()
+            
 
         },
         copiarProfissional(index){
