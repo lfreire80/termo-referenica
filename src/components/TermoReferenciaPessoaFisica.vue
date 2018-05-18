@@ -40,7 +40,7 @@
                 >
             </app-documento-field>
 
-            <app-documento-field
+            <app-profissional-atividades-field
                 titulo = "4. ESPECIFICAÇÕES TÉCNICAS"
                 :somenteLeitura = "somenteLeitura"
                 :showTooltip = "tooltips.showEspecificacao"
@@ -50,8 +50,9 @@
                 @addComentario="addComentario('especificacao')"
                 @updated="termo.documento.especificacao = $event; $store.dispatch('updateTermo', termo)"
                 >
-            </app-documento-field>
-            <app-documento-field
+            </app-profissional-atividades-field>
+
+            <app-profissional-produtos-field
                  titulo = "5. PRODUTO"
                  :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showProduto"
@@ -61,7 +62,7 @@
                  @addComentario="addComentario('produto')"
                  @updated="termo.documento.produto = $event; $store.dispatch('updateTermo', termo)"
                  >
-            </app-documento-field>
+            </app-profissional-produtos-field>
 
             <app-documento-field
                  titulo = "6. APRESENTAÇÃO E APROVAÇÃO DO SERVIÇO"
@@ -137,6 +138,8 @@
     
     import UnidadeExecucao from './shared/UnidadeExecucao.vue'
     import DocumentoField from './shared/DocumentoField.vue'
+    import ProfissionalAtividadesField from './shared/ProfissionalAtividadesField.vue'
+    import ProfissionalProdutosField from './shared/ProfissionalProdutosField.vue'
     import {mapState} from 'vuex'
 
     export default{
@@ -186,7 +189,9 @@
         },
         components:{
             appDocumentoField: DocumentoField,
-            appUnidadeExecucao: UnidadeExecucao
+            appUnidadeExecucao: UnidadeExecucao,
+            appProfissionalAtividadesField: ProfissionalAtividadesField,
+            appProfissionalProdutosField: ProfissionalProdutosField
         }
 
     }
@@ -207,3 +212,4 @@
         font-size:12px;
     }
 </style>
+
