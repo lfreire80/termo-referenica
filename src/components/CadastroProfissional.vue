@@ -92,7 +92,7 @@
                         <div class="form-group">   
                             <label for="inss">Parcela:</label>
                             <div class="input-group">
-                                <input type="text" class="col-lg-12 form-control" id="periodo" v-model="parcela.numeroParcela" />
+                                <input type="text" class="col-lg-12 form-control" id="periodo" v-model="parcela.parcelaNumero" />
                             </div>
                         </div>
                     </div>

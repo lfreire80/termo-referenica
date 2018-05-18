@@ -88,7 +88,7 @@
                  >
             </app-documento-field>
 
-            <app-documento-field
+            <app-profissional-custo-field
                  titulo = "8. ESTIMATIVA DE CUSTO DA CONTRATAÇÃO"
                  :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showEstimativaCusto"
@@ -98,9 +98,9 @@
                  @addComentario="addComentario('estimativaCusto')"
                  @updated="termo.documento.estimativaCusto = $event; $store.dispatch('updateTermo', termo)"
                  >
-            </app-documento-field>
+            </app-profissional-custo-field>
 
-            <app-documento-field
+            <app-profissional-prazos-field
                  titulo = "9. CONDIÇÕES E PRAZOS DE PAGAMENTO"
                  :somenteLeitura = "somenteLeitura"
                  :showTooltip = "tooltips.showCondicoes"
@@ -110,7 +110,7 @@
                  @addComentario="addComentario('condicoes')"
                  @updated="termo.documento.condicoes = $event; $store.dispatch('updateTermo', termo)"
                  >
-            </app-documento-field>
+            </app-profissional-prazos-field>
 
             <app-documento-field
                  titulo = "10. OBRIGAÇÕES DO(A) PROFISSIONAL A SER CONTRATADO"
@@ -140,6 +140,8 @@
     import DocumentoField from './shared/DocumentoField.vue'
     import ProfissionalAtividadesField from './shared/ProfissionalAtividadesField.vue'
     import ProfissionalProdutosField from './shared/ProfissionalProdutosField.vue'
+    import ProfissionalCustoField from './shared/ProfissionalCustoField.vue'
+    import ProfissionalPrazosField from './shared/ProfissionalPrazosField.vue'
     import {mapState} from 'vuex'
 
     export default{
@@ -191,7 +193,9 @@
             appDocumentoField: DocumentoField,
             appUnidadeExecucao: UnidadeExecucao,
             appProfissionalAtividadesField: ProfissionalAtividadesField,
-            appProfissionalProdutosField: ProfissionalProdutosField
+            appProfissionalProdutosField: ProfissionalProdutosField,
+            appProfissionalCustoField: ProfissionalCustoField,
+            appProfissionalPrazosField: ProfissionalPrazosField
         }
 
     }
