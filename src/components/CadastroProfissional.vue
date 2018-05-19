@@ -145,6 +145,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import _ from 'lodash'
 
 export default {
     data() {
@@ -168,7 +169,7 @@ export default {
     },
     methods: {
         addParcela(){
-            this.profissional.parcelas.push(Object.assign({}, this.parcela))
+            this.profissional.parcelas.push(_.clone(this.parcela))
             // Limpa as propriedades da parcela //
             this.parcela = Object.getOwnPropertyNames(this.parcela).reduce((a, c) => {
                 a[c] = ''
@@ -198,14 +199,14 @@ export default {
 
         },
         copiarProfissional(index){
-            this.termo.documento.profissionais.push(this.clonarProfissional(this.termo.documento.profissionais[index]))
-        },
-        clonarProfissional(profissional){
-            var parcelas = profissional.parcelas.map(x => Object.assign({}, x))
-            var profissional = Object.assign({}, profissional);
-            profissional.parcelas = parcelas
-            return profissional
+            this.termo.documento.profissionais.push(_.cloneDeep(this.termo.documento.profissionais[index]))
         }
+        // clonarProfissional(profissional){
+        //     var parcelas = profissional.parcelas.map(x => Object.assign({}, x))
+        //     var profissional = Object.assign({}, profissional);
+        //     profissional.parcelas = parcelas
+        //     return profissional
+        // }
         
     },
     computed: {

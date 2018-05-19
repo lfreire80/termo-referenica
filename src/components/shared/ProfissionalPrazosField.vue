@@ -98,7 +98,7 @@
             },
             getProfs(){
                 var parcelas = [];
-                this.termo.documento.profissionais.forEach((p) => p.parcelas.forEach((par) => parcelas.push(par)))
+                this.termo.documento.profissionais.forEach(p => p.parcelas.forEach(par => parcelas.push(par)))
                 return parcelas;
             }
         }
