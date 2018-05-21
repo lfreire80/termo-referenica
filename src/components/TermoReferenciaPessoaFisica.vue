@@ -1,6 +1,6 @@
 <template>
    <div>
-        <div style="padding:20px; font-size:10px;">
+        <div style="padding:20px; font-size:10px;" v-if="action != 'view'">
             <center><button class="btn btn-primary btn-sm" style="cursor:ponter" @click="addProfissional()">Cadastrar Profissionais</button></center>
         </div>
         <div class="form-group">
@@ -174,6 +174,7 @@
                     showObrigacoes: false,
                     showFonte: false
                 },
+                action: this.$route.params.action,
             }
         },
         props: [
