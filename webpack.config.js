@@ -1,6 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
 
+var publicPath = '/dist/';
+
+if (process.env.NODE_ENV === 'production') {
+  publicPath = '/Portal/termo-referencia/dist/'
+}
+
+
 module.exports = {
   entry: ['babel-polyfill','./src/main.js'],
   output: {
@@ -28,7 +35,8 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
+          name: '[name].[ext]?[hash]',
+          publicPath
         }
       }
     ]
