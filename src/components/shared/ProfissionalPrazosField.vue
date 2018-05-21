@@ -49,7 +49,7 @@
             </thead>
             <tbody>
                 <tr v-for="(par,index) in getProfs()">
-                    <td>Profissional {{index+1}}</td>
+                    <td>Profissional {{par.profissional}}</td>
                     <td>{{par.periodo}}</td>
                     <td>{{par.produto}}</td>
                     <td>{{par.parcelaNumero}}</td>
@@ -63,6 +63,8 @@
 <script>
     import Tooltip from './Tooltip.vue'
     import { mapState } from 'vuex'
+    
+
     export default{
         props: [
             'titulo',
@@ -97,13 +99,24 @@
                 this.$emit("addComentario")
             },
             getProfs(){
-                var parcelas = [];
-                this.termo.documento.profissionais.forEach(p => p.parcelas.forEach(par => parcelas.push(par)))
-                return parcelas;
+                return this.termo.documento.profissionais
+                    .map((prof, key) => prof.parcelas
+                        .map(par => {
+                            return  {
+                                profissional: key + 1,
+                                periodo: par.periodo,
+                                produto: par.produto,
+                                parcelaNumero: par.parcelaNumero,
+                                valor: par.valor
+                            }
+                        })
+                    )
+                    .reduce((agr,cur) => {
+                        agr = agr.concat(cur)
+                        return agr
+                    },[])
             }
         }
-      
-        
     }
 </script>
 
