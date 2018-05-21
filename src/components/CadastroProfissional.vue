@@ -9,18 +9,18 @@
                 </div> 
                 <div class="row">
                     <div class="col-12">
-                        <table class="table">
+                        <table class="table" v-if="termo.documento.profissionais">
                             <tr v-for="(valor, index) in termo.documento.profissionais" :style="(profissional_selecionado == index) ? 'background-color:#ccc': ''">
                                 <td @click="selecionaProfissional(index)">Profissional - {{index+1}}</td>
-                                <td><a href="#" @click="copiarProfissional(index)"><img alt="Copiar este profissional" title="Copiar este profissional" src="/Portal/termo-referencia/dist/repo-clone.svg" /></a></td>
-                                <td><a href="#" @click="removeProfissional(index)"><img alt="Remover profissional" title="Remover profissional" src="/Portal/termo-referencia//dist/trashcan.svg" /></a></td>
+                                <td><a href="#" @click="copiarProfissional(index)"><img alt="Copiar este profissional" title="Copiar este profissional" src="../assets/repo-clone.svg" /></a></td>
+                                <td><a href="#" @click="removeProfissional(index)"><img alt="Remover profissional" title="Remover profissional" src="../assets/trashcan.svg" /></a></td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-8" v-if="termo.documento.profissionais">
             <div class="box" v-show="termo.documento.profissionais.length > 0">
                 <div class="form-group">   
                     <label for="atividade">Atividade:</label>
@@ -132,7 +132,7 @@
                                 <td class="col-3">{{parcela.produto}}</td>
                                 <td class="col-2">{{parcela.parcelaNumero}}</td>
                                 <td class="col-3">{{parcela.valor}}</td>
-                                <td class="col-1"><a href="#" @click="remover(parcela)"><img alt="Remover parcela" title="Remover parcela" src="/Portal/termo-referencia/dist/trashcan.svg" /></a></td>
+                                <td class="col-1"><a href="#" @click="remover(parcela)"><img alt="Remover parcela" title="Remover parcela" src="../assets/trashcan.svg" /></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -161,11 +161,6 @@ export default {
                 valor: ''
             }
         }
-    },
-    mounted(){
-        console.log(this.termo.documento.profissionais)
-        //if(this.termo.documento.profissionais)
-          //  this.selecionaProfissional(0)
     },
     methods: {
         addParcela(){

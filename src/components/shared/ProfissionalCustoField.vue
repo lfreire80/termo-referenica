@@ -1,7 +1,7 @@
 <template>
   <div>
        <div class="label">
-            <span>{{titulo}}</span><span class="check">
+            <span>{{titulo}}</span>
             <span class="right-span">
                 <button 
                     type="button"

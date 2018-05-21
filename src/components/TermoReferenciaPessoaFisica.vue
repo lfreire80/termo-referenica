@@ -131,7 +131,20 @@
             </div>
             <textarea class="form-control" v-model="termo.documento.fonte"></textarea>
        </div>
-   </div>
+        <div class="modal fade" id="myModalProfissional" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content modal-profissioal">
+                    <div class="modal-header"><h5>Cadastro do Profissional</h5></div>
+                    <div class="modal-body">
+                        <app-cadastro-profissional></app-cadastro-profissional>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+       </div> 
+    </div>
 </template>
 <script>
 
@@ -142,6 +155,7 @@
     import ProfissionalProdutosField from './shared/ProfissionalProdutosField.vue'
     import ProfissionalCustoField from './shared/ProfissionalCustoField.vue'
     import ProfissionalPrazosField from './shared/ProfissionalPrazosField.vue'
+    import CadastroProfissional from './CadastroProfissional.vue'
     import {mapState} from 'vuex'
 
     export default{
@@ -186,7 +200,7 @@
                 this.$emit("addComentario", campo);
             },
             addProfissional(){
-                this.$emit('addProfissional')
+                $('#myModalProfissional').modal()
             }
         },
         components:{
@@ -195,7 +209,8 @@
             appProfissionalAtividadesField: ProfissionalAtividadesField,
             appProfissionalProdutosField: ProfissionalProdutosField,
             appProfissionalCustoField: ProfissionalCustoField,
-            appProfissionalPrazosField: ProfissionalPrazosField
+            appProfissionalPrazosField: ProfissionalPrazosField,
+            appCadastroProfissional : CadastroProfissional,
         }
 
     }

@@ -68,21 +68,7 @@
             <button type="button" class="btn btn-sm btn-primary" @click="save()" :disabled="(action == 'view')">Salvar</button>
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
-
-       <div class="modal fade" id="myModalProfissional" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content modal-profissioal">
-                    <div class="modal-header"><h5>Cadastro do Profissional</h5></div>
-                    <div class="modal-body">
-                        <app-cadastro-profissional></app-cadastro-profissional>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
-            </div>
-       </div> 
-    
+ 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -115,7 +101,6 @@
     import TermoReferenciaPessoaFisica from './TermoReferenciaPessoaFisica.vue'
     import TermoReferenciaPessoaJuridica from './TermoReferenciaPessoaJuridica.vue'
     import TermoReferenciaBolsa from './TermoReferenciaBolsa.vue'
-    import CadastroProfissional from './CadastroProfissional.vue'
     import TermoReferenciaImportacao from './TermoReferenciaImportacao.vue'
     import { Tipos } from '../models/Tipos.js'
     import { mapState, mapActions } from 'vuex'
@@ -221,9 +206,6 @@
                 this.selectedTipo = e.target.value
                 this.newTermo(this.selectedTipo)
             },
-            addProfissional(){
-                $('#myModalProfissional').modal()
-            },
             ...mapActions([
                 'loadTermo',
                 'clearTermo',
@@ -236,8 +218,7 @@
             appTermoReferenciaPessoaFisica : TermoReferenciaPessoaFisica,
             appTermoReferenciaPessoaJuridica : TermoReferenciaPessoaJuridica,
             appTermoReferenciaBolsa : TermoReferenciaBolsa,
-            appTermoReferenciaImportacao : TermoReferenciaImportacao,
-            appCadastroProfissional : CadastroProfissional,
+            appTermoReferenciaImportacao : TermoReferenciaImportacao,            
         }
     }
 </script>

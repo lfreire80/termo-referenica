@@ -1,7 +1,7 @@
 <template>
   <div>
        <div class="label">
-            <span>{{titulo}}</span><span class="check">
+            <span>{{titulo}}</span>
             <!--<input class="form-input" type="checkbox" v-model="showFirstOnly" />(mostrar somente a descrição do primeiro Profissional)</span>-->
             <span class="right-span">
                 <button 
