@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { AUTH_TOKEN } from '../auth'
+import { AUTH_TOKEN, USER } from '../auth'
 import { mapActions } from 'vuex'
 export default {
     mounted(){
-        if (AUTH_TOKEN == 'Bearer undefined'){
+        if (AUTH_TOKEN == 'Bearer undefined' || USER === null){
             window.location = '../';
         } else {
             this.updateUsuario()
