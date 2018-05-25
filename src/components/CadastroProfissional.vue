@@ -34,12 +34,12 @@
                         <textarea type="text" class="col-lg-12 form-control" id="produto" v-model="profissional.produto"></textarea>
                     </div>
                 </div>
-                <div class="form-group">   
+                <!--<div class="form-group">   
                     <label for="produto">Prazo:</label>
                     <div class="input-group">
                         <textarea type="text" class="col-lg-12 form-control" id="prazo" v-model="profissional.prazo" ></textarea>
                     </div>
-                </div>
+                </div>-->
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">   
