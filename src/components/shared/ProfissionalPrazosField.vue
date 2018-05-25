@@ -101,13 +101,13 @@
             getProfs(){
                 return this.termo.documento.profissionais
                     .map((prof, key) => prof.parcelas
-                        .map(par => {
+                        .map(parcela => {
                             return  {
                                 profissional: key + 1,
-                                periodo: par.periodo,
-                                produto: par.produto,
-                                parcelaNumero: par.parcelaNumero,
-                                valor: par.valor
+                                periodo: parcela.periodo,
+                                produto: parcela.produto,
+                                parcelaNumero: parcela.parcelaNumero,
+                                valor: parcela.valor
                             }
                         })
                     )
