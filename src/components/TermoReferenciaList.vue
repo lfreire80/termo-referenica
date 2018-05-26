@@ -116,10 +116,9 @@
                     await this.loadTermos()
                 }
             },
-            async retorna(id){
+            retorna(id){
                 if(confirm("Deseja mesmo RETORNAR este termo de refência para revisão!")){
-                    await this.encaminhaParaRevisaoTermo(id)
-                    await this.loadTermos()
+                    this.encaminhaParaRevisaoTermo(id).then(()=>this.loadTermos())
                 }
             },
             async del(id){
