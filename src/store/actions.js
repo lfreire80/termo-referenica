@@ -67,8 +67,8 @@ const encaminhaTermo = async({}, id) => {
     await axios.post(URL_TERMO + `/encaminhar/${id}`)
 }
 
-const encaminhaParaRevisaoTermo = async({}, id) => {
-    await axios.post(URL_TERMO + `/pararevisao/${id}`)
+const encaminhaParaRevisaoTermo = ({}, id) => {
+    return axios.post(URL_TERMO + `/pararevisao/${id}`)
 }
 
 const baixaTermo = async({}, id) => {
