@@ -104,31 +104,31 @@
             async filtrarProcesso(processo){
                 await this.loadTermos(processo)
             },
-            async encaminha(id){
+            encaminha(id){
                 if(confirm("Deseja mesmo ENCAMINHAR este termo de refência!")){
-                    await this.encaminhaTermo(id)
-                    await this.loadTermos()
+                    this.encaminhaTermo(id).then(() => this.mudaStatusTermo(id, 2))
                 }
             },
-            async aprova(id){
+            aprova(id){
                 if(confirm("Deseja mesmo APROVAR este termo de refência!")){
-                    await this.aprovaTermo(id)
-                    await this.loadTermos()
+                    this.aprovaTermo(id).then(() => this.mudaStatusTermo(id, 4))
                 }
             },
             retorna(id){
                 if(confirm("Deseja mesmo RETORNAR este termo de refência para revisão!")){
-                    this.encaminhaParaRevisaoTermo(id).then(()=>this.loadTermos())
+                    this.encaminhaParaRevisaoTermo(id).then(() => this.mudaStatusTermo(id, 3))
                 }
             },
-            async del(id){
+            del(id){
                 if(confirm("Deseja mesmo EXCLUIR este termo de refência!")){
-                    await this.deleteTermo(id)
-                    await this.loadTermos()
+                     this.deleteTermo(id).then(async ()=> await this.loadTermos())
                 }
             },
-            async baixar(id){
-                await this.baixaTermo(id);
+            baixar(id){
+                this.baixaTermo(id);
+            },
+            mudaStatusTermo(id, status){
+                this.termos.filter( c => c.numero == id)[0].status = status
             },
             ...mapActions([
                 'loadTermos',
