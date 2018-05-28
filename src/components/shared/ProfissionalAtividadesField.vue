@@ -5,18 +5,21 @@
             <!--<input class="form-input" type="checkbox" v-model="showFirstOnly" />(mostrar somente a descrição do primeiro Profissional)</span>-->
             <span class="right-span">
                 <button 
+                    id="btnAddComentario"
                     type="button"
                     @click="addComentario()"
                     v-if="usuario.perfil == 6"
                     class="btn btn-sm my-btn-revisoes">+
                 </button>
                 <button 
+                    id="btnShowComentarios"
                     type="button"
                     @click="showComentarios = !showComentarios"
                     v-if="comentarios.length > 0"
                     class="btn btn-sm my-btn-revisoes">Comentários {{comentarios.length}}
                 </button>
                 <button 
+                    id="btnTooltipMsg"
                     type="button"
                     @click="internalShowTooltip = !internalShowTooltip"
                     v-if="tooltipMsg"
@@ -39,13 +42,13 @@
                 <p>{{comentario.comentario }}</p>
         </app-tooltip>
 
-        <p v-if="!showFirstOnly" v-for="(prof,index) in termo.documento.profissionais">
+        <p id="pAtividade" v-if="!showFirstOnly" v-for="(prof,index) in termo.documento.profissionais">
             <strong v-if="termo.documento.profissionais.length > 1">Profissional {{index+1}}</strong><br />
-            {{prof.atividade}}
+            <span>{{prof.atividade}}</span>
         </p>
-        <!-- <p v-if="showFirstOnly">
+        <p id="pAtividade" v-if="showFirstOnly">
             {{termo.documento.profissionais[0].atividade}}
-        </p>-->
+        </p>
 
   </div>
 </template>

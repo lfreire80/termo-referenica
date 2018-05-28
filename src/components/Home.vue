@@ -14,17 +14,29 @@
 import { AUTH_TOKEN, USER } from '../auth'
 import { mapActions } from 'vuex'
 export default {
-    mounted(){
-        if (AUTH_TOKEN == 'Bearer undefined' || USER === null){
-            window.location = '../';
-        } else {
-            this.updateUsuario()
+    data() {
+        return {
+            AuthToken: AUTH_TOKEN
         }
+    },
+    mounted(){
+        this.checkCredenctials()
     }, 
     methods:{
         ...mapActions([
             'updateUsuario'
-        ])
+        ]),
+        sendToLoginPage(){
+            window.location = '../';
+        },
+        checkCredenctials(){
+            if (this.AuthToken == 'Bearer undefined'){
+            this.sendToLoginPage()
+            } else {
+                this.updateUsuario()
+            }
+        }
+
     }
 }
 </script>

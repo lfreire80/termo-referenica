@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class='my-tooltip'
+        <div class='my-tooltip' id="tooltipDiv"
             v-if="show"
             v-bind:style="{backgroundColor: bgColor, borderColor: bdColor}">
                 <p><slot></slot></p>

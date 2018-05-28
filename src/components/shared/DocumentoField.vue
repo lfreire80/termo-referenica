@@ -4,18 +4,21 @@
             <span>{{titulo}}</span>
             <span class="right-span">
                 <button 
+                    id="btnAddComentario"
                     type="button"
                     @click="addComentario()"
                     v-if="usuario.perfil == 6"
                     class="btn btn-sm my-btn-revisoes">+
                 </button>
                 <button 
+                    id="btnShowComentarios"
                     type="button"
                     @click="showComentarios = !showComentarios"
                     v-if="comentarios.length > 0"
                     class="btn btn-sm my-btn-revisoes">Comentários {{comentarios.length}}
                 </button>
                 <button 
+                    id="btnTooltipMsg"
                     type="button"
                     @click="internalShowTooltip = !internalShowTooltip"
                     v-if="tooltipMsg"
@@ -83,8 +86,6 @@
             }
 
         }
-      
-        
     }
 </script>
 
