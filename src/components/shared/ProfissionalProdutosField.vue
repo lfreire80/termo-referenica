@@ -4,18 +4,21 @@
             <span>{{titulo}}</span>
             <span class="right-span">
                 <button 
+                    id="btnAddComentario"
                     type="button"
                     @click="addComentario()"
                     v-if="usuario.perfil == 6"
                     class="btn btn-sm my-btn-revisoes">+
                 </button>
                 <button 
+                    id="btnShowComentarios"
                     type="button"
                     @click="showComentarios = !showComentarios"
                     v-if="comentarios.length > 0"
                     class="btn btn-sm my-btn-revisoes">Comentários {{comentarios.length}}
                 </button>
                 <button 
+                    id="btnTooltipMsg"
                     type="button"
                     @click="internalShowTooltip = !internalShowTooltip"
                     v-if="tooltipMsg"
@@ -37,9 +40,9 @@
                 <div class="comentario-header">{{ comentario.data}}</div>
                 <p>{{comentario.comentario }}</p>
         </app-tooltip>
-        <p v-for="(prof,index) in termo.documento.profissionais">
+        <p id="pProduto" v-for="(prof,index) in termo.documento.profissionais">
             <strong v-if="termo.documento.profissionais.length > 1">Profissional {{index+1}}</strong><br />
-            {{prof.produto}}
+            <span>{{prof.produto}}</span>
         </p>
   </div>
 </template>
