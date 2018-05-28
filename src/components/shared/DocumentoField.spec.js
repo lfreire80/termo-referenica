@@ -2,6 +2,8 @@ import { shallowMount } from '@vue/test-utils'
 import DocumentoField from './DocumentoField'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import mockedState from '../specs/mockState'
+
 
 describe('DocumentoField', () =>{
    
@@ -15,12 +17,7 @@ describe('DocumentoField', () =>{
 
         Vue.use(Vuex)
 
-        state = {
-            usuario: {
-                perfil: 1,
-                processos: [1,2,3]
-            }
-        }
+        state = mockedState
 
         store = new Vuex.Store({state})
 

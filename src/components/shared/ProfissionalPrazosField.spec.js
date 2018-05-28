@@ -2,7 +2,9 @@ import { shallowMount } from '@vue/test-utils'
 import ProfissionalPrazosField from './ProfissionalPrazosField'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { exec } from 'child_process';
+import mockedState from '../specs/mockState'
+
+
 
 describe('ProfissionalPrazosField', () =>{
    
@@ -16,40 +18,7 @@ describe('ProfissionalPrazosField', () =>{
 
         Vue.use(Vuex)
 
-        state = {
-            usuario: {
-                perfil: 1,
-                processos: [1,2,3]
-            },
-            termo: {
-                documento: {
-                    profissionais: [{
-                        atividade: 'atividade prof 1',
-                        parcelas: [{
-                            periodo: '1',
-                            produto: 'produto',
-                            parcelaNumero: '1',
-                            valor:'122'
-                        },
-                        {
-                            periodo: '1',
-                            produto: 'produto',
-                            parcelaNumero: '1',
-                            valor:'122'
-                        }]
-                    },
-                    {
-                        atividade: 'atividade prof 2',
-                        parcelas: [{
-                            periodo: '1',
-                            produto: 'produto',
-                            parcelaNumero: '1',
-                            valor:'122'
-                        }]
-                    }]
-                }
-            }
-        }
+        state = mockedState
 
         store = new Vuex.Store({state})
 

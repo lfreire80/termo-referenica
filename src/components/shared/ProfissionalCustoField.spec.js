@@ -2,6 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import ProfissionalCustoField from './ProfissionalCustoField'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import mockedState from '../specs/mockState'
 
 describe('ProfissionalCustoField', () =>{
    
@@ -15,26 +16,7 @@ describe('ProfissionalCustoField', () =>{
 
         Vue.use(Vuex)
 
-        state = {
-            usuario: {
-                perfil: 1,
-                processos: [1,2,3]
-            },
-            termo: {
-                documento: {
-                    profissionais: [{
-                        valor: 10,
-                        inss: 5,
-                        total: 4.3
-                    },
-                    {
-                        valor: 11,
-                        inss: 35,
-                        total: 24.3
-                    }]
-                }
-            }
-        }
+        state = mockedState
 
         store = new Vuex.Store({state})
 

@@ -2,6 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import UnidadeExecucao from './UnidadeExecucao'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import mockedState from '../specs/mockState'
 
 describe('UnidadeExecucao', () =>{
 
@@ -13,25 +14,7 @@ describe('UnidadeExecucao', () =>{
 
         Vue.use(Vuex)
 
-        state = {
-            termo: {
-                documento: {
-                    unidadeExecucao: {
-                        gerencia: 'gerencia teste',
-                        tel: 'tes teste',
-                        email: 'email teste',
-                        endereco: 'endereco teste',
-                        cep: 'cep teste',
-
-                        tecUnidade: 'tex unidade teste',
-                        tecDepartamento: 'tecDepartamento teste',
-                        tecTelefone: 'tectelefone teste',
-                        tecEmail: 'tecEmail teste',
-                        tecEndereco: 'tecEndereco teste'
-                    }
-                }
-            }
-        }
+        state = mockedState
 
         store = new Vuex.Store({state}) 
 
