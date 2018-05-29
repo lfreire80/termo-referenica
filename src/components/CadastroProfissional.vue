@@ -4,16 +4,16 @@
             <div class="box"  style="height:100%; margin-bottom:5px;">
                 <div class="row">
                     <div class="col-12" style="text-align:center; margin-bottom:10px">
-                        <button type="button" @click="addProfissional()" class="btn btn-sm btn-primary">Adicionar Profissional</button>
+                        <button id="btnaddProfissional" type="button" @click="addProfissional()" class="btn btn-sm btn-primary">Adicionar Profissional</button>
                     </div>
                 </div> 
                 <div class="row">
                     <div class="col-12">
                         <table class="table" v-if="termo.documento.profissionais">
                             <tr v-for="(valor, index) in termo.documento.profissionais" :style="(profissional_selecionado == index) ? 'background-color:#ccc': ''">
-                                <td @click="selecionaProfissional(index)">Profissional - {{index+1}}</td>
-                                <td><a href="#" @click="copiarProfissional(index)"><img alt="Copiar este profissional" title="Copiar este profissional" src="../assets/repo-clone.svg" /></a></td>
-                                <td><a href="#" @click="removeProfissional(index)"><img alt="Remover profissional" title="Remover profissional" src="../assets/trashcan.svg" /></a></td>
+                                <td id="btnSelecionaProfissional" @click="selecionaProfissional(index)">Profissional - {{index+1}}</td>
+                                <td><a id="btnCopiaProfissioanl" href="#" @click="copiarProfissional(index)"><img alt="Copiar este profissional" title="Copiar este profissional" src="../assets/repo-clone.svg" /></a></td>
+                                <td><a id="btnRemoveProfissional" href="#" @click="removeProfissional(index)"><img alt="Remover profissional" title="Remover profissional" src="../assets/trashcan.svg" /></a></td>
                             </tr>
                         </table>
                     </div>
@@ -110,7 +110,7 @@
                         <div class="form-group">
                             <label for="inss"></label>
                             <div class="input-group">
-                                <button class="btn btn-sm btn-primary" @click="addParcela()">Incluir Parcela</button>
+                                <button id="btnAddParcela" class="btn btn-sm btn-primary" @click="addParcela()">Incluir Parcela</button>
                             </div>
                         </div>
                     </div>
@@ -190,19 +190,11 @@ export default {
             this.profissional_selecionado = index
             if(this.profissional.parcelas)
                 this.profissional.parcelas.sort()
-            
-
         },
         copiarProfissional(index){
             this.termo.documento.profissionais.push(_.cloneDeep(this.termo.documento.profissionais[index]))
         }
-        // clonarProfissional(profissional){
-        //     var parcelas = profissional.parcelas.map(x => Object.assign({}, x))
-        //     var profissional = Object.assign({}, profissional);
-        //     profissional.parcelas = parcelas
-        //     return profissional
-        // }
-        
+       
     },
     computed: {
             ...mapState([
@@ -210,7 +202,6 @@ export default {
             ])
         },
 }
-
 </script>
 
 <style scoped>
