@@ -4,10 +4,9 @@ import mockedState from './specs/mockState'
 import sinon from 'sinon'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { wrap } from 'module';
 import { Tipos } from '../models/Tipos'
 import { Status } from '../models/Status'
-import { exec } from 'child_process';
+
 
 describe('TermoReferenciaList', () =>{
    
