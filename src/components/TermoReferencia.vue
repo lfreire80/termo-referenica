@@ -18,7 +18,7 @@
          <div class="form-group row">
             <label for="projeto" class="col-3 col-form-label">PROCESSO FUJB:</label>
             <div class="col-5">
-                <input class="form-control" type="text" id="processo" v-model="termo.processo" :disabled="action == 'view'" @blur="preencheDadosProcesso(termo.processo)">
+                <input  class="form-control" type="text" id="processo" v-model="termo.processo" :disabled="action == 'view'" @blur="preencheDadosProcesso(termo.processo)">
             </div>
         </div>
         <div class="form-group row">
@@ -149,7 +149,6 @@
                         alert('Gravado com Sucesso')
                         this.$router.push('/')
                     } else {
-                        console.log('erro ao gravar')
                         alert('Erro ao gravar!')
                     }
                 } else {
@@ -161,6 +160,7 @@
                 return (this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.toString().trim()).length > 0)
             },
             preencheDadosProcesso(){
+                
                 let dadosProcesso = this.usuario.processos.filter(e => e.cod_processo.toString().trim() === this.termo.processo.toString().trim())[0]
                 if(dadosProcesso){
                     this.termo.projeto = dadosProcesso.titulo.split('\"').join(''); //remove \" indevidas
@@ -170,7 +170,6 @@
                     this.termo.documento.unidadeExecucao.email = dadosProcesso.sigla_secao + "@fujb.ufrj.br"
                     this.termo.documento.fonte = `Os recursos financeiros necessários aos pagamentos mencionados neste TR serão oriundos do Projeto ${dadosProcesso.titulo}, processo FUJB: ${this.termo.processo}, financiados pela ${dadosProcesso.financiador}.`
                     
-                    console.log(this.termo.documento)
                 } else {
                     this.termo.projeto = ""
                     this.termo.instituicaoFinanceira = ""
@@ -180,6 +179,7 @@
                     if(this.termo.processo != ""){
                         alert('Você não possui autorização para este Processo FUJB')
                     }
+                    
                 }
             },
             addComentario(e){

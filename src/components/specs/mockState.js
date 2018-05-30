@@ -1,7 +1,22 @@
 const state = {
     usuario: {
         perfil: 1,
-        processos: [1, 2, 3]
+        processos: [{
+            cod_processo: 1,
+            titulo: 'titulo',
+            financiador: 'financiador',
+            sigla_secao: 'secao'
+           },{
+            cod_processo: 2,
+            titulo: 'titulo',
+            financiador: 'financiador',
+            sigla_secao: 'secao'
+        },{
+            cod_processo: 3,
+            titulo: 'titulo',
+            financiador: 'financiador',
+            sigla_secao: 'secao'
+        }]
     },
     termo: {
         numero: 34,
