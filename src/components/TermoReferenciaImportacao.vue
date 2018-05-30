@@ -105,8 +105,7 @@
                     showJuntadaDocumento: false,
                     showFonte: false,
                     showJustificativa: false
-                },
-                somenteLeitura : false
+                }
             }
         },
         props: [
