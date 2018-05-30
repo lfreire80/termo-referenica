@@ -1,7 +1,7 @@
 <template>
    <div>
         <div style="padding:20px; font-size:10px;" v-if="action != 'view'">
-            <center><button class="btn btn-primary btn-sm" style="cursor:ponter" @click="addProfissional()">Cadastrar Profissionais</button></center>
+            <center><button id="btnAddProfissional" class="btn btn-primary btn-sm" style="cursor:ponter" @click="addProfissional()">Cadastrar Profissionais</button></center>
         </div>
         <div class="form-group">
             <app-documento-field
