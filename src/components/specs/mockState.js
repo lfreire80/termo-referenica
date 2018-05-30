@@ -115,7 +115,24 @@ const state = {
                 }
             ]
         },
-        revisoes: [],
+        revisoes: [{
+            codigoRevisao:1,
+            data: '2018-05-30',
+            revisor: 198,
+            documento:{
+                objeto: "objeto revisao 1",
+                justificativa: "justificativa revisao 2"
+            }
+        },
+        {
+            codigoRevisao:2,
+            data: '2018-05-30',
+            revisor: 198,
+            documento:{
+                objeto: "objeto revisao 2",
+                especificacao: "especificacao revisao 2"
+            }
+        }],
         modelo: {
             objeto:
                 "Contratação de Profissional com experiência na área  xxxxxxxxxxxxxx",
