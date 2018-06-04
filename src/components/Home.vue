@@ -1,18 +1,22 @@
 <template>
-  <div class="content">
-      <div class="row">
-        <div class="content-box">
-            <transition name="fade">
-                <router-view></router-view>
-            </transition>
-       </div>
-      </div>
+    <div class="content">
+        
+        <div class="row">
+            <div class="content-box">
+                <app-alerts />
+                <transition name="fade">
+                    <router-view></router-view>
+                </transition>
+             </div>
+        </div>
     </div>
 </template>
 
 <script>
 import { AUTH_TOKEN, USER } from '../auth'
 import { mapActions } from 'vuex'
+import { MessageBus } from '../message-bus.js'
+import Alerts from './Alerts.vue'
 export default {
     data() {
         return {
@@ -37,6 +41,9 @@ export default {
             }
         }
 
+    },
+    components: {
+        appAlerts: Alerts
     }
 }
 </script>

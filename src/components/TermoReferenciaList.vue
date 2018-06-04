@@ -76,6 +76,7 @@
     import { Tipos } from '../models/Tipos'
     import { Status } from '../models/Status'
     import { mapState, mapActions } from 'vuex'
+    import { MessageBus } from '../message-bus.js'
     export default{
         
         data(){
@@ -92,7 +93,9 @@
             ])
         },
         mounted(){
-            this.loadTermos()
+            this.loadTermos().catch(err => {
+                MessageBus.$emit('Error', 'Erro ao carregar informações', 100)
+            })
         },    
         methods: {
             editarTermo(id){
@@ -106,22 +109,34 @@
             },
             encaminha(id){
                 if(confirm("Deseja mesmo ENCAMINHAR este termo de refência!")){
-                    this.encaminhaTermo(id).then(() => this.mudaStatusTermo(id, 2))
+                    this.encaminhaTermo(id).then(() => {
+                        this.mudaStatusTermo(id, 2)
+                        MessageBus.$emit('Success', 'Termo encaminhado para FUJB', 5)
+                    })
                 }
             },
             aprova(id){
                 if(confirm("Deseja mesmo APROVAR este termo de refência!")){
-                    this.aprovaTermo(id).then(() => this.mudaStatusTermo(id, 4))
+                    this.aprovaTermo(id).then(() => {
+                        this.mudaStatusTermo(id, 4)
+                        MessageBus.$emit('Success', 'Termo aprovado para FUJB', 5)
+                    })
                 }
             },
             retorna(id){
                 if(confirm("Deseja mesmo RETORNAR este termo de refência para revisão!")){
-                    this.encaminhaParaRevisaoTermo(id).then(() => this.mudaStatusTermo(id, 3))
+                    this.encaminhaParaRevisaoTermo(id).then(() => {
+                        this.mudaStatusTermo(id, 3)
+                        MessageBus.$emit('Success', 'Termo retornou para o correção', 5)
+                    })
                 }
             },
             del(id){
                 if(confirm("Deseja mesmo EXCLUIR este termo de refência!")){
-                     this.deleteTermo(id).then(async ()=> await this.loadTermos())
+                    this.deleteTermo(id).then(async ()=> {
+                        await this.loadTermos()
+                        MessageBus.$emit('Success', 'Termo excluido com sucesso', 5)
+                    })
                 }
             },
             baixar(id){

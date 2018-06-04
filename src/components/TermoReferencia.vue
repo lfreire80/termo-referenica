@@ -104,6 +104,7 @@
     import TermoReferenciaImportacao from './TermoReferenciaImportacao.vue'
     import { Tipos } from '../models/Tipos.js'
     import { mapState, mapActions } from 'vuex'
+    import { MessageBus } from '../message-bus.js'
 
     export default{
         data() {
@@ -146,13 +147,14 @@
                 if(this.validaProcesso()){
                     const res = await this.saveTermo();
                     if(res.status === 200){
-                        alert('Gravado com Sucesso')
+                        
+                        MessageBus.$emit('Success', 'Gravado com sucesso', 5)
                         this.$router.push('/')
                     } else {
-                        alert('Erro ao gravar!')
+                        MessageBus.$emit('Error', 'Erro ao gravar', 5)
                     }
                 } else {
-                    alert('Você não possui autorização para este Processo FUJB')
+                    MessageBus.$emit('Error', 'Você não possui autorização para este Processo FUJB', 5)
                 }
             },
             validaProcesso(){
@@ -177,7 +179,7 @@
                     this.termo.documento.unidadeExecucao.tel = ""
                     this.termo.documento.unidadeExecucao.email = ""
                     if(this.termo.processo != ""){
-                        alert('Você não possui autorização para este Processo FUJB')
+                        MessageBus.$emit('Error', 'Você não possui autorização para este Processo FUJB', 5)
                     }
                     
                 }
@@ -199,6 +201,8 @@
                     this.termo.revisoes.push(revisao)
 
                     this.updateTermo(this.termo)
+                        .then(() => MessageBus.$emit('Success', 'Comentário criado com sucesso'))
+                        .catch(() => MessageBus.$emit('Error', 'Erro ao cadastrar um comentário'))
                     $('#myModal').modal('hide')
                 }
             },
