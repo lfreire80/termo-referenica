@@ -66,11 +66,4 @@ describe('TermoReferencia', () =>{
         wrapper.find('#processo').trigger('blur')
         expect(preencheDadosProcessoStub.called).toBe(true)
     })
-
-    test('preencheDadosProcesso deve disparar um alerta caso usuario nao possua este processo', () => {
-        state.termo.processo = 10
-        wrapper.vm.preencheDadosProcesso()
-        expect(window.alert.called).toBeTruthy()
-    });
-
 })

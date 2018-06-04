@@ -8,6 +8,7 @@ import { Tipos } from '../models/Tipos'
 import { Status } from '../models/Status'
 
 
+
 describe('TermoReferenciaList', () =>{
    
     let state
@@ -22,7 +23,7 @@ describe('TermoReferenciaList', () =>{
         wrapper = shallowMount(TermoReferenciaList, {
             store,
             methods:{
-                loadTermos: () => {}
+                loadTermos: async () => {}
             }
         })
     })
