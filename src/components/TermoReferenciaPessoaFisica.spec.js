@@ -22,7 +22,7 @@ describe('TermoReferenciaPessoaFisica', () =>{
         const router = new VueRouter({
             routes,
             mode: 'history',
-            base: '/Portal/termo-referencia/'
+            base: '/termo-referencia/'
         })
 
         state = mockedState

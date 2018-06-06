@@ -3,7 +3,10 @@ const USER = getUser()
 
 function getToken(){
     const cookies = getAuthTokenFromCookie()
-    return cookies[0].split('=')[1]
+    const authCookie = cookies.filter( c => c.split('=')[0].trim() === 'authentication')
+    if(authCookie.length > 0)
+        return authCookie[0].split('=')[1]
+    return []
 }
 
 function getUser(){

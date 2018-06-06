@@ -14,7 +14,7 @@ Vue.config.devtools = true
 const router = new VueRouter({
   routes,
   mode: 'history',
-  base: '/Portal/termo-referencia/'
+  base: '/termo-referencia/'
 })
 
 new Vue({

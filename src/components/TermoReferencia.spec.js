@@ -24,7 +24,7 @@ describe('TermoReferencia', () =>{
         const router = new VueRouter({
             routes,
             mode: 'history',
-            base: '/Portal/termo-referencia/'
+            base: '/termo-referencia/'
         })
 
         state = _.cloneDeep(mockedState)

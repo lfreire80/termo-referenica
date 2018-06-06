@@ -4,7 +4,7 @@ var webpack = require('webpack')
 var publicPath = '/dist/';
 
 if (process.env.NODE_ENV === 'production') {
-  publicPath = '/Portal/termo-referencia/dist/'
+  publicPath = '/termo-referencia/dist/'
 }
 
 
