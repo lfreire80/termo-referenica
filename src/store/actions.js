@@ -75,6 +75,10 @@ const baixaTermo = async({}, id) => {
     window.open(URL_TERMO + `/print/${id}`)
 }
 
+const setLoading = ({commit}, flag) => {
+    commit('UPDATE_LOADING', flag)
+}
+
 export default{
     loadTermos,
     updateTermo,
@@ -87,5 +91,6 @@ export default{
     aprovaTermo,
     encaminhaTermo,
     encaminhaParaRevisaoTermo,
-    baixaTermo
+    baixaTermo,
+    setLoading
 }

@@ -16,12 +16,14 @@ export const store = new Vuex.Store({
         usuario: {
             processos: []
         },
+        isLoading: false,
        
     },
     mutations: {
         'UPDATE_TERMO': (state, payload) => state.termo = payload,
         'UPDATE_TERMOS': (state, payload) => state.termos = payload,
-        'UPDATE_USUARIO': (state, payload) => state.usuario = payload
+        'UPDATE_USUARIO': (state, payload) => state.usuario = payload,
+        'UPDATE_LOADING': (state, payload) => state.isLoading = payload
     },
     actions
 })

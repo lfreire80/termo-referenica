@@ -22,6 +22,9 @@
         <input v-model="processo" />
         <a @click="filtrarProcesso(processo)"><img src="../assets/filter-icon.png"/></a>
     </div>
+    <div class="row">
+        
+    </div>
     <table v-if="termos.length > 0">
         <thead>
         <tr>
@@ -84,6 +87,7 @@
               Tipos: Tipos,
               Status: Status,
               filtroHabilitado: false,
+              isLoading: false
             }
         }, 
         computed: {
@@ -93,8 +97,12 @@
             ])
         },
         mounted(){
-            this.loadTermos().catch(err => {
+            this.setLoading(true)
+            this.loadTermos()
+                .then( () => this.setLoading(false))
+                .catch(err => {
                 MessageBus.$emit('Error', 'Erro ao carregar informações', 100)
+                this.setLoading(false)
             })
         },    
         methods: {
@@ -151,7 +159,8 @@
                 'encaminhaTermo',
                 'aprovaTermo',
                 'encaminhaParaRevisaoTermo',
-                'baixaTermo'
+                'baixaTermo',
+                'setLoading'
             ]),
            
         }

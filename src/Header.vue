@@ -14,12 +14,16 @@
      
             </ul>             
         </div>
+        <app-ajax-loader></app-ajax-loader>
     </div>
 </template>
 
 <script>
+    import AjaxLoader from './components/shared/AjaxLoader.vue'
     export default{
-
+        components: {
+            appAjaxLoader: AjaxLoader
+        }
     }
 </script>
 
