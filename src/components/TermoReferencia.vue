@@ -145,15 +145,18 @@
         methods: {
             async save(){
                 if(this.validaProcesso()){
+                    this.setLoading(true)
                     const res = await this.saveTermo();
                     if(res.status === 200){
-                        
+                        this.setLoading(false)
                         MessageBus.$emit('Success', 'Gravado com sucesso', 5)
                         this.$router.push('/')
                     } else {
+                        this.setLoading(false)
                         MessageBus.$emit('Error', 'Erro ao gravar', 5)
                     }
                 } else {
+                    this.setLoading(false)
                     MessageBus.$emit('Error', 'Você não possui autorização para este Processo FUJB', 5)
                 }
             },
@@ -200,15 +203,23 @@
                     revisao.documento[this.tipoComentario] = this.comentario
                     this.termo.revisoes.push(revisao)
 
+                    this.setLoading(true)
                     this.updateTermo(this.termo)
-                        .then(() => MessageBus.$emit('Success', 'Comentário criado com sucesso'))
-                        .catch(() => MessageBus.$emit('Error', 'Erro ao cadastrar um comentário'))
+                        .then(() => {
+                            this.setLoading(false)
+                            MessageBus.$emit('Success', 'Comentário criado com sucesso')
+                        })
+                        .catch(() => {
+                            this.setLoading(false)
+                            MessageBus.$emit('Error', 'Erro ao cadastrar um comentário')
+                        })
                     $('#myModal').modal('hide')
                 }
             },
             changeTipo(e){
                 this.selectedTipo = e.target.value
-                this.newTermo(this.selectedTipo)
+                this.setLoading(true)
+                this.newTermo(this.selectedTipo).then(() => this.setLoading(false))
             },
             ...mapActions([
                 'loadTermo',
@@ -216,6 +227,7 @@
                 'newTermo',
                 'saveTermo',
                 'updateTermo',
+                'setLoading'
             ])
         },
         components: {

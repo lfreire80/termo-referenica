@@ -101,9 +101,9 @@
             this.loadTermos()
                 .then( () => this.setLoading(false))
                 .catch(err => {
-                MessageBus.$emit('Error', 'Erro ao carregar informações', 100)
-                this.setLoading(false)
-            })
+                    MessageBus.$emit('Error', 'Erro ao carregar informações', 100)
+                    this.setLoading(false)
+                })          
         },    
         methods: {
             editarTermo(id){
@@ -117,32 +117,41 @@
             },
             encaminha(id){
                 if(confirm("Deseja mesmo ENCAMINHAR este termo de refência!")){
+                    this.setLoading(true)
                     this.encaminhaTermo(id).then(() => {
                         this.mudaStatusTermo(id, 2)
+                        this.setLoading(false)
                         MessageBus.$emit('Success', 'Termo encaminhado para FUJB', 5)
+                        
                     })
                 }
             },
             aprova(id){
                 if(confirm("Deseja mesmo APROVAR este termo de refência!")){
+                    this.setLoading(true)
                     this.aprovaTermo(id).then(() => {
                         this.mudaStatusTermo(id, 4)
+                        this.setLoading(false)
                         MessageBus.$emit('Success', 'Termo aprovado para FUJB', 5)
                     })
                 }
             },
             retorna(id){
                 if(confirm("Deseja mesmo RETORNAR este termo de refência para revisão!")){
+                    this.setLoading(true)
                     this.encaminhaParaRevisaoTermo(id).then(() => {
                         this.mudaStatusTermo(id, 3)
+                        this.setLoading(false)
                         MessageBus.$emit('Success', 'Termo retornou para o correção', 5)
                     })
                 }
             },
             del(id){
                 if(confirm("Deseja mesmo EXCLUIR este termo de refência!")){
+                    this.setLoading(true)
                     this.deleteTermo(id).then(async ()=> {
                         await this.loadTermos()
+                        this.setLoading(false)
                         MessageBus.$emit('Success', 'Termo excluido com sucesso', 5)
                     })
                 }
@@ -162,9 +171,7 @@
                 'baixaTermo',
                 'setLoading'
             ]),
-           
         }
-        
     }
 </script>
 
