@@ -1,8 +1,11 @@
 import axios from 'axios'
 import { AUTH_TOKEN, USER } from '../auth'
 
-const URL_TERMO = 'https://portal.fujb.ufrj.br/FujbPortal.API/api/termoreferencia'
-const URL_PROCESSO = 'https://portal.fujb.ufrj.br/FujbPortal.API/api/termoreferencia'
+const URL = 'http://localhost:49894/api/'
+//const URL = 'https://portal.fujb.ufrj.br/FujbPortal.API/api/'
+
+const URL_TERMO = URL + 'termoreferencia'
+const URL_PROCESSO = URL + 'processo'
 
 axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
