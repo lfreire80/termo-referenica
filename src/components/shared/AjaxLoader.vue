@@ -1,9 +1,11 @@
 <template>
-    <div v-show="isLoading || false" class="overlay">
-        <div class="lds-ring">
-            <div></div>
+    <transition name="fade">
+        <div v-show="isLoading || false" class="overlay">
+            <div class="lds-ring">
+                <div></div>
+            </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -64,6 +66,15 @@
         100% {
             transform: rotate(360deg);
         }
+    }
+
+    
+    .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s ease-out
+    }
+
+    .fade-enter, .fade-leave-active {
+    opacity: 0
     }
 
 </style>

@@ -128,13 +128,20 @@
             this.termos=[];
             switch(this.action){
                 case 'new':
-                    await this.newTermo(this.selectedTipo)
+                    this.setLoading(true)
+                    this.newTermo(this.selectedTipo).then(() => {
+                        this.setLoading(false)
+                    })
                 break;
                 case 'edit':
-                    await this.loadTermo(this.id)
+                    this.loadTermo(this.id).then(() => {
+                        this.setLoading(false)
+                    })
                 break;
                 case 'view':
-                    await this.loadTermo(this.id)
+                    this.loadTermo(this.id).then(() => {
+                        this.setLoading(false)
+                    })
                 break;
             }
             
