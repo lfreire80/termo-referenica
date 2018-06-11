@@ -1,4 +1,5 @@
 const state = {
+    isLoading: false,
     usuario: {
         perfil: 1,
         processos: [{

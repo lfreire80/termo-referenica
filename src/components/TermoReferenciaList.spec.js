@@ -23,7 +23,8 @@ describe('TermoReferenciaList', () =>{
         wrapper = shallowMount(TermoReferenciaList, {
             store,
             methods:{
-                loadTermos: async () => {}
+                loadTermos: async () => {},
+                setLoading: () => {}
             }
         })
     })

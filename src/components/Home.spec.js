@@ -11,7 +11,10 @@ describe('Home', () =>{
     
     beforeAll(() => {
         wrapper = shallowMount(Home,{
-            stubs: ['router-link']
+            stubs: ['router-link'],
+            methods: {
+                updateUsuario: () => {}
+            }
         })
     })
 
