@@ -48,25 +48,25 @@
             <td :class="{ grid_color : key % 2 != 0}">{{ Tipos[termo.tipo] }}</td>
             <td :class="{ grid_color : key % 2 != 0}">{{ Status[termo.status] }}</td>
             <td :class="{ grid_color : key % 2 != 0}">
-                <a href="#" @click="visualizarTermo(termo.numero)"><img alt="Visualizar termo de referência" title="Visualizar termo de referência" src="../assets/search.svg" /></a>
+                <a href="#" @click="visualizarTermo(termo.numero)" v-show="temPermissao('visualizar')"><img alt="Visualizar termo de referência" title="Visualizar termo de referência" src="../assets/search.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
-                <a href="#" @click="editarTermo(termo.numero)" v-show="termo.status == 1 || termo.status == 3"><img alt="Editar termo de referência" title="Editar termo de referência" src="../assets/book.svg" /></a>
+                <a href="#" @click="editarTermo(termo.numero)" v-show="(termo.status == 1 || termo.status == 3) && temPermissao('editar')"><img alt="Editar termo de referência" title="Editar termo de referência" src="../assets/book.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
-                <a href="#" @click="encaminha(termo.numero)" v-show="termo.status == 1 || termo.status == 3"><img alt="Enviar termo de referência" title="Enviar termo de referência" src="../assets/arrow-up.svg" /></a>
+                <a href="#" @click="encaminha(termo.numero)" v-show="(termo.status == 1 || termo.status == 3) && temPermissao('encaminhar')"><img alt="Enviar termo de referência" title="Enviar termo de referência" src="../assets/arrow-up.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
-                <a href="#" @click="aprova(termo.numero)" v-show="termo.status == 2"><img alt="Aprova termo de referência" title="Aprova termo de referência" src="../assets/thumbsup.svg" /></a>
+                <a href="#" @click="aprova(termo.numero)" v-show="termo.status == 2 && temPermissao('aprovar')"><img alt="Aprova termo de referência" title="Aprova termo de referência" src="../assets/thumbsup.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
-                <a href="#" @click="retorna(termo.numero)" v-show="termo.status == 2 || termo.status == 4"><img alt="Encaminha termo de referência para revisão" title="Encaminha termo de referência para revisão" src="../assets/thumbsdown.svg" /></a>
+                <a href="#" @click="retorna(termo.numero)" v-show="(termo.status == 2 || termo.status == 4) && temPermissao('retornar')"><img alt="Encaminha termo de referência para revisão" title="Encaminha termo de referência para revisão" src="../assets/thumbsdown.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
-                <a href="#" @click="baixar(termo.numero)" v-show="termo.status == 4"><img alt="Baixar PDF" title="Baixar PDF" src="../assets/file-pdf.svg" /></a>
+                <a href="#" @click="baixar(termo.numero)" v-show="termo.status == 4 && temPermissao('baixar')"><img alt="Baixar PDF" title="Baixar PDF" src="../assets/file-pdf.svg" /></a>
             </td>
             <td :class="{ grid_color : key % 2 != 0}">
-                <a href="#" @click="del(termo.numero)"><img alt="Excluir termo de referência" title="Excluir termo de referência" src="../assets/trashcan.svg" /></a>
+                <a href="#" @click="del(termo.numero)" v-show="temPermissao('excluir')"><img alt="Excluir termo de referência" title="Excluir termo de referência" src="../assets/trashcan.svg" /></a>
             </td>
         </tr>
         </tbody>
@@ -80,6 +80,7 @@
     import { Status } from '../models/Status'
     import { mapState, mapActions } from 'vuex'
     import { MessageBus } from '../message-bus.js'
+    import { USER } from '../auth'
     export default{
         
         data(){
@@ -103,9 +104,22 @@
                 .catch(err => {
                     MessageBus.$emit('Error', 'Erro ao carregar informações', 100)
                     this.setLoading(false)
-                })          
+                })       
         },    
         methods: {
+            temPermissao(val){
+                if(USER){
+                    const perfil = USER.perfil
+                    const permissaoAdm = ['visualizar', 'aprovar', 'retornar']
+                    const permissaoUsuario = ['visualizar', 'editar', 'encaminhar','baixar', 'excluir']
+                    if(perfil === 6 && permissaoAdm.filter(c => c == val).length > 0)
+                        return true
+                    if (perfil === 1 && permissaoUsuario.filter(c => c == val).length > 0)
+                        return true
+                    return false
+                }
+                return false;
+            },
             editarTermo(id){
                 this.$router.push(`/edit/${id}`)
             },

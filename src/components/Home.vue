@@ -35,7 +35,7 @@ export default {
         },
         checkCredenctials(){
             if (this.AuthToken == 'Bearer undefined'){
-            this.sendToLoginPage()
+                this.sendToLoginPage()
             } else {
                 this.updateUsuario()
             }

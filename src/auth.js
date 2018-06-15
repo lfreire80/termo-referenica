@@ -1,6 +1,5 @@
 const AUTH_TOKEN = 'Bearer ' + getToken()
 const USER = getUser()
-
 function getToken(){
     const cookies = getAuthTokenFromCookie()
     const authCookie = cookies.filter( c => c.split('=')[0].trim() === 'authentication')
@@ -17,7 +16,7 @@ function getUser(){
         const user = cookies.filter(name => name.split('=')[0].trim() == "user")[0].split("=")[1]
         return {
             id: user,
-            perfil : perfil
+            perfil
         }
     }
     return null
