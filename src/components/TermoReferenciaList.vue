@@ -112,9 +112,9 @@
                     const perfil = USER.perfil
                     const permissaoAdm = ['visualizar', 'aprovar', 'retornar']
                     const permissaoUsuario = ['visualizar', 'editar', 'encaminhar','baixar', 'excluir']
-                    if(perfil === 6 && permissaoAdm.filter(c => c == val).length > 0)
+                    if(perfil == 6 && permissaoAdm.filter(c => c == val).length > 0)
                         return true
-                    if (perfil === 1 && permissaoUsuario.filter(c => c == val).length > 0)
+                    if (perfil == 1 && permissaoUsuario.filter(c => c == val).length > 0)
                         return true
                     return false
                 }

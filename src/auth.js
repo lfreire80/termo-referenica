@@ -10,7 +10,6 @@ function getToken(){
 
 function getUser(){
     const cookies = getAuthTokenFromCookie()
-    //verifica se a propriedade user esta no cookie
     if(cookies.filter(n => n.indexOf('user') != -1).length > 0){
         const perfil = cookies.filter(name => name.split('=')[0].trim() == "perfil")[0].split("=")[1]
         const user = cookies.filter(name => name.split('=')[0].trim() == "user")[0].split("=")[1]
