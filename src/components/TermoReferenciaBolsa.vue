@@ -135,17 +135,10 @@
 
             <app-unidade-execucao :somenteLeitura="somenteLeitura" titulo="12. UNIDADE DE EXECUÇÃO TÉCNICA E FINANCEIRA:"/>
 
-            <app-documento-field
-                 titulo = "13. FONTE DE RECURSOS"
-                 :somenteLeitura = "somenteLeitura"
-                 :showTooltip = "tooltips.showFonte"
-                 :tooltipMsg = "termo.modelo.fonte"
-                 v-model = "termo.documento.fonte"
-                 :comentarios = "getComentarios('fonte')"
-                 @addComentario="addComentario('fonte')"
-                 @updated="termo.documento.fonte = $event; $store.dispatch('updateTermo', termo)"
-                 >
-            </app-documento-field>
+             <div class="label">
+                <span>12. FONTE DE RECURSO</span>
+            </div>
+            <textarea class="form-control" v-model="termo.documento.fonte"></textarea>
 
 
        </div>
