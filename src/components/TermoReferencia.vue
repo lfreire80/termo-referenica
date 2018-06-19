@@ -65,7 +65,7 @@
         </app-termo-referencia-importacao>
 
         <div class="text-right rodapeBotoes" >
-            <button type="button" class="btn btn-sm btn-primary" @click="save()" :disabled="(action == 'view')">Salvar</button>
+            <button type="button" class="btn btn-sm btn-primary" @click="save()" :disabled="(action == 'view' && usuario.perfil != 6)">Salvar</button>
             <router-link class="btn btn-sm" tag="button" to="/"><span>Sair</span></router-link>
         </div>
  
