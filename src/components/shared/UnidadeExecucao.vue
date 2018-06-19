@@ -22,11 +22,11 @@
                             <br/>CEP: {{ termo.documento.unidadeExecucao.cep }}</label><br />
                     </td>
                     <td>
-                        <input v-model="termo.documento.unidadeExecucao.tecUnidade" type="text" placeholder="Sigla da Unidade"/><br />
-                        <input v-model="termo.documento.unidadeExecucao.tecDepartamento" type="text" placeholder="Departamento"/><br />
-                        <input v-model="termo.documento.unidadeExecucao.tecTelefone" type="text" placeholder="Telefone"/><br />
-                        <input v-model="termo.documento.unidadeExecucao.tecEmail" type="text" placeholder="Email"/><br />
-                        <textarea v-model="termo.documento.unidadeExecucao.tecEndereco" placeholder="Endereço completo"></textarea><br />
+                        <input v-model="termo.documento.unidadeExecucao.tecUnidade" type="text" :disabled="somenteLeitura" placeholder="Sigla da Unidade"/><br />
+                        <input v-model="termo.documento.unidadeExecucao.tecDepartamento" type="text" :disabled="somenteLeitura"  placeholder="Departamento"/><br />
+                        <input v-model="termo.documento.unidadeExecucao.tecTelefone" type="text" :disabled="somenteLeitura"  placeholder="Telefone"/><br />
+                        <input v-model="termo.documento.unidadeExecucao.tecEmail" type="text" :disabled="somenteLeitura"  placeholder="Email"/><br />
+                        <textarea v-model="termo.documento.unidadeExecucao.tecEndereco" :disabled="somenteLeitura"  placeholder="Endereço completo"></textarea><br />
                     </td>
                 </tr>
             </table>
@@ -38,7 +38,10 @@
     import { mapState } from 'vuex'
     
     export default {
-        props: ['titulo'],
+        props: [
+            'titulo',
+            'somenteLeitura'
+        ],
         computed:{
             ...mapState(['termo'])
         }

@@ -124,7 +124,7 @@
                  >
             </app-documento-field>
 
-            <app-unidade-execucao titulo="11. UNIDADE DE EXECUÇÃO TÉCNICA E FINANCEIRA:"/>
+            <app-unidade-execucao :somenteLeitura="somenteLeitura" titulo="11. UNIDADE DE EXECUÇÃO TÉCNICA E FINANCEIRA:"/>
 
             <div class="label">
                 <span>12. FONTE DE RECURSO</span>

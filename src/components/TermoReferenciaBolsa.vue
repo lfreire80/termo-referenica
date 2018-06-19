@@ -133,7 +133,7 @@
                  >
             </app-documento-field>
 
-            <app-unidade-execucao titulo="12. UNIDADE DE EXECUÇÃO TÉCNICA E FINANCEIRA:"/>
+            <app-unidade-execucao :somenteLeitura="somenteLeitura" titulo="12. UNIDADE DE EXECUÇÃO TÉCNICA E FINANCEIRA:"/>
 
             <app-documento-field
                  titulo = "13. FONTE DE RECURSOS"
